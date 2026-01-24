@@ -35,17 +35,31 @@ export default function Offers() {
                 const data = response.data;
 
                 if (Array.isArray(data)) {
-                    // Преобразуем данные API в нужный формат
-                    const formattedProducts = data.map(item => ({
-                        id: item.product.id, // Используем product.id
-                        name: item.product.name,
-                        unit: item.product.unit,
-                        quantity: item.quantity,
-                        purchase_price: item.purchase_price,
-                        barcode: item.barcode,
-                        batch: item.batch,
-                        category: item.product.category_id || 'Без категории'
-                    }));
+                    // Создаем уникальные продукты с помощью Map
+                    const uniqueProducts = new Map();
+
+                    data.forEach(item => {
+                        // Создаем уникальный ключ на основе id и batch
+                        const uniqueKey = `${item.product.id}-${item.batch || 'no-batch'}`;
+
+                        // Если продукт с таким ключом еще не добавлен, добавляем
+                        if (!uniqueProducts.has(uniqueKey)) {
+                            uniqueProducts.set(uniqueKey, {
+                                id: uniqueKey, // Используем уникальный ключ
+                                product_id: item.product.id,
+                                name: item.product.name,
+                                unit: item.product.unit,
+                                quantity: item.quantity,
+                                purchase_price: item.purchase_price,
+                                barcode: item.barcode,
+                                batch: item.batch,
+                                category: item.product.category_id || 'Без категории'
+                            });
+                        }
+                    });
+
+                    // Преобразуем Map обратно в массив
+                    const formattedProducts = Array.from(uniqueProducts.values());
                     setProducts(formattedProducts);
                 } else {
                     setProducts([]);
@@ -80,12 +94,12 @@ export default function Offers() {
     };
 
     // Обработчик выбора/отмены выбора продукта
-    const handleProductSelect = (productId) => {
+    const handleProductSelect = (productName) => {
         setSelectedProducts(prev => {
-            if (prev.includes(productId)) {
-                return prev.filter(id => id !== productId);
+            if (prev.includes(productName)) {
+                return prev.filter(name => name !== productName);
             } else {
-                return [...prev, productId];
+                return [...prev, productName];
             }
         });
     };
@@ -128,11 +142,11 @@ export default function Offers() {
         setMessage('');
 
         try {
-            // Отправка данных на бэкенд
+            // Отправка данных на бэкенд с именами продуктов
             const response = await axios.post('https://api.usderp.uz/crm/api/offers', {
                 full_name: formData.full_name,
                 phone_number: formData.phone_number,
-                products: formData.products
+                products: formData.products // Отправляем массив имен продуктов
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -165,8 +179,8 @@ export default function Offers() {
     };
 
     // Получение выбранных продуктов для отображения
-    const selectedProductDetails = selectedProducts.map(id =>
-        products.find(p => p.id === id)
+    const selectedProductDetails = selectedProducts.map(productName =>
+        products.find(p => p.name === productName)
     ).filter(Boolean);
 
     return (
@@ -239,21 +253,24 @@ export default function Offers() {
                                     </span>
                                 </div>
                                 <div className="flex flex-wrap gap-2">
-                                    {selectedProductDetails.map(product => (
-                                        <div
-                                            key={product.id}
-                                            className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3 py-2 rounded-lg"
-                                        >
-                                            <span className="text-sm text-blue-300">{product.name}</span>
-                                            <button
-                                                type="button"
-                                                onClick={() => handleProductSelect(product.id)}
-                                                className="text-blue-400 hover:text-blue-300 text-xs"
+                                    {selectedProducts.map((productName, index) => {
+                                        const product = products.find(p => p.name === productName);
+                                        return (
+                                            <div
+                                                key={`${productName}-${index}`} // Используем уникальный ключ
+                                                className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3 py-2 rounded-lg"
                                             >
-                                                ✕
-                                            </button>
-                                        </div>
-                                    ))}
+                                                <span className="text-sm text-blue-300">{productName}</span>
+                                                <button
+                                                    type="button"
+                                                    onClick={() => handleProductSelect(productName)}
+                                                    className="text-blue-400 hover:text-blue-300 text-xs"
+                                                >
+                                                    ✕
+                                                </button>
+                                            </div>
+                                        );
+                                    })}
                                 </div>
                             </div>
                         )}
@@ -340,17 +357,17 @@ export default function Offers() {
 
                             {products.length > 0 ? (
                                 <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                                    {products.map(product => (
+                                    {products.map((product, index) => (
                                         <div
-                                            key={product.id}
+                                            key={product.id} // Используем уникальный id из данных
                                             onClick={() => handleProductSelect(product.name)}
-                                            className={`relative p-4 rounded-xl border cursor-pointer transition-all duration-300 ${selectedProducts.includes(product.id)
+                                            className={`relative p-4 rounded-xl border cursor-pointer transition-all duration-300 ${selectedProducts.includes(product.name)
                                                 ? 'bg-blue-500/10 border-blue-500/50 ring-2 ring-blue-500/20'
                                                 : 'bg-slate-800/30 border-slate-700 hover:border-slate-600 hover:bg-slate-800/50'
                                                 }`}
                                         >
                                             <div className="flex items-center justify-between mb-3">
-                                                <div className={`w-6 h-6 rounded-full border flex items-center justify-center ${selectedProducts.includes(product.id)
+                                                <div className={`w-6 h-6 rounded-full border flex items-center justify-center ${selectedProducts.includes(product.name)
                                                     ? 'bg-blue-500 border-blue-500'
                                                     : 'border-slate-600'
                                                     }`}>
@@ -372,9 +389,9 @@ export default function Offers() {
                                                 <p className="text-xs text-slate-400">
                                                     Количество: {product.quantity} {product.unit}
                                                 </p>
-                                                {product.barcode && (
+                                                {product.batch && (
                                                     <p className="text-xs text-slate-500">
-                                                        Штрих-код: {product.barcode}
+                                                        Партия: {product.batch}
                                                     </p>
                                                 )}
                                             </div>
@@ -402,6 +419,15 @@ export default function Offers() {
                     )}
                 </div>
 
+                {/* Информация о формате данных */}
+                <div className="mt-6 text-center">
+                    <p className="text-sm text-slate-500">
+                        Данные отправляются в формате:{' '}
+                        <code className="bg-slate-800 px-2 py-1 rounded text-slate-300 text-xs">
+                            {"{full_name, phone_number, products: ['Название товара 1', 'Название товара 2']}"}
+                        </code>
+                    </p>
+                </div>
             </div>
         </div>
     );
