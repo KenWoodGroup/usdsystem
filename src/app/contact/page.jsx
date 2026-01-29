@@ -1,42 +1,80 @@
-import React from 'react';
+'use client'; // 🔥 Важно! Делает компонент клиентским
+
+import React, { useEffect } from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 const Contact = () => {
+    useEffect(() => {
+        AOS.init({
+            duration: 900,
+            easing: 'ease-out-cubic',
+            once: true,
+            offset: 120,
+        });
+    }, []);
+
     return (
         <div className="pt-32 pb-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid lg:grid-cols-2 gap-16">
+
                     {/* Левая колонка */}
-                    <div>
-                        <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-[#FFFFFF]">
-                            Свяжитесь с нами
-                        </h1>
-                        <p className="text-[#94A3B8] text-lg mb-12">
-                            Есть вопросы по проекту или хотите сотрудничать? Напишите нам или позвоните.
-                        </p>
+                    <div className="space-t-12">
+                        <div className="overflow-hidden" data-aos="fade-down">
+                            <h1 className="text-4xl lg:text-5xl font-bold mb-6 text-[#FFFFFF]">
+                                Свяжитесь с нами
+                            </h1>
+                            <p className="text-[#94A3B8] text-lg mb-12">
+                                Есть вопросы по проекту или хотите сотрудничать? Напишите нам или позвоните.
+                            </p>
+                        </div>
 
                         <div className="space-y-8">
-                            <ContactInfo icon={<Phone className="text-[#3B82F6]" />} label="Телефон" value="+998 71 200 00 00" />
-                            <ContactInfo icon={<Mail className="text-[#3B82F6]" />} label="Email" value="info@usdgroup.uz" />
-                            <ContactInfo icon={<MapPin className="text-[#3B82F6]" />} label="Адрес" value="г. Ташкент, Чиланзарский район, 5-й квартал" />
+                            <ContactInfo
+                                icon={<Phone className="text-[#3B82F6]" />}
+                                label="Телефон"
+                                value="+998 71 200 00 00"
+                                delay={0}
+                            />
+                            <ContactInfo
+                                icon={<Mail className="text-[#3B82F6]" />}
+                                label="Email"
+                                value="info@usdgroup.uz"
+                                delay={100}
+                            />
+                            <ContactInfo
+                                icon={<MapPin className="text-[#3B82F6]" />}
+                                label="Адрес"
+                                value="г. Ташкент, Чиланзарский район, 5-й квартал"
+                                delay={200}
+                            />
                         </div>
 
                         {/* Секция карты */}
-                        <div className="mt-12 h-64 rounded-3xl overflow-hidden bg-[#0F172A]/30 backdrop-blur-sm border border-[#1E293B] relative">
-                            <div className="w-full h-full bg-[#0F172A] flex items-center justify-center relative">
-                                <span className="text-[#475569] font-bold uppercase tracking-widest text-xs z-10">
-                                    Интеграция Google Maps
-                                </span>
-                                <div className="absolute inset-0 opacity-20 bg-[url('https://www.google.com/maps/vt/pb=!1m4!1m3!1i12!2i2345!3i1234!2m3!1e0!2sm!3i123456!3m8!2suz!3sUS!5e1105!12m4!1e68!2m2!1sset!2sRoadmap!4e0!5m1!1f2')] bg-cover"></div>
-                                <div className="w-10 h-10 bg-[#EF4444] rounded-full flex items-center justify-center animate-bounce z-20 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-                                    <MapPin size={20} className="text-[#FFFFFF]" />
-                                </div>
-                            </div>
+                        {/* Секция карты */}
+                        <div
+                            className="mt-12 h-64 rounded-3xl overflow-hidden border border-[#1E293B]"
+                            data-aos="zoom-in"
+                        >
+                            <iframe
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d24269.18843728014!2d68.76681100158085!3d40.505153952142315!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x38b20744f37988af%3A0x5fe5538855c9a835!2z0JzQvtC70L7QtNC10LbQvdGL0Lkg0YbQtdC90YLRgA!5e0!3m2!1sru!2s!4v1769680768792!5m2!1sru!2s"
+                                className="w-full h-full"
+                                style={{ border: 0 }}
+                                allowFullScreen=""
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
+                            ></iframe>
                         </div>
+
                     </div>
 
                     {/* Правая колонка: Форма */}
-                    <div className="bg-[#0F172A] p-8 lg:p-12 rounded-[2.5rem] border border-[#1E293B]">
+                    <div
+                        className="bg-[#0F172A] p-8 lg:p-12 rounded-[2.5rem] border border-[#1E293B]"
+                        data-aos="fade-left"
+                    >
                         <h3 className="text-2xl font-bold mb-8 text-[#FFFFFF]">Отправить сообщение</h3>
                         <form className="space-y-6">
                             <div className="grid md:grid-cols-2 gap-6">
@@ -77,8 +115,12 @@ const Contact = () => {
     );
 };
 
-const ContactInfo = ({ icon, label, value }) => (
-    <div className="flex items-start space-x-6">
+const ContactInfo = ({ icon, label, value, delay = 0 }) => (
+    <div
+        className="flex items-start space-x-6 overflow-hidden"
+        data-aos="fade-up"
+        data-aos-delay={delay}
+    >
         <div className="p-4 bg-[#0F172A] rounded-2xl border border-[#1E293B]">{icon}</div>
         <div>
             <div className="text-[#64748B] text-sm mb-1">{label}</div>

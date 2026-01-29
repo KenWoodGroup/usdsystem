@@ -1,32 +1,88 @@
-'use client'; // 🔥 нужно для интерактивных компонентов (кнопки, hover)
+'use client';
 
+import React, { useEffect } from 'react';
 import Link from 'next/link';
-import React from 'react';
-import { ArrowRight, Cpu, Building2, BarChart3, Truck, ShoppingCart, CheckCircle2 } from 'lucide-react';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
+
+import {
+  ArrowRight,
+  Cpu,
+  Building2,
+  Truck,
+  ShoppingCart,
+  CheckCircle2,
+} from 'lucide-react';
 
 const Home = () => {
+  useEffect(() => {
+    AOS.init({
+      duration: 900,
+      easing: 'ease-out-cubic',
+      once: true,
+      offset: 120,
+    });
+  }, []);
+
   return (
     <div className="relative pt-20">
-      {/* Hero Section */}
-      <section className="relative py-24 lg:py-40 overflow-hidden">
-        <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
-        <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal-600/20 blur-[120px] rounded-full pointer-events-none"></div>
+      {/* HERO */}
+      <section className="relative py-12 md:py-16 lg:py-20 overflow-hidden">
+        {/* Фоны */}
+        <div
+          className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full"
+          data-aos="fade-right"
+        />
+        <div
+          className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal-600/20 blur-[120px] rounded-full"
+          data-aos="fade-left"
+        />
 
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto px-4 relative">
           <div className="text-center">
-            <h1 className="text-5xl text-white lg:text-7xl font-extrabold tracking-tight mb-8">
-              Производство → Продажа → Строительство <br />
-              <span className="gradient-text">На единой платформе</span>
+            <h1
+              className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-extrabold mb-4"
+              data-aos="fade-up"
+            >
+              <span className="gradient-text">Все на единой платформе</span>
             </h1>
-            <p className="max-w-2xl mx-auto text-xl text-slate-400 mb-10 leading-relaxed">
-              Систематизируем производство, предлагаем CRM для строительных компаний и платформу для продажи строительных материалов, а также инновационные логистические решения для повышения эффективности вашего бизнеса.
+
+            <div className="mb-4">
+              {['Производство', 'Продажа', 'Строительство'].map((text, i) => (
+                <span
+                  key={text}
+                  className="block text-white text-2xl sm:text-3xl md:text-4xl lg:text-[50px] font-bold"
+                  data-aos="fade-up"
+                  data-aos-delay={i * 200}
+                >
+                  {text}
+                </span>
+              ))}
+            </div>
+
+            <p
+              className="max-w-2xl mx-auto text-slate-400 text-lg mb-6"
+              data-aos="fade-up"
+              data-aos-delay="600"
+            >
+              Единая платформа для поиска всех продуктов по выгодным ценам
             </p>
-            <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Link href="/contact" className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition-all transform hover:scale-105 flex items-center justify-center space-x-2">
-                <span>Начать проект</span>
-                <ArrowRight size={20} />
+
+            <div
+              className="flex flex-col sm:flex-row justify-center gap-4"
+              data-aos="fade-up"
+              data-aos-delay="800"
+            >
+              <Link
+                href="/contact"
+                className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold flex items-center justify-center gap-2 transition-all hover:scale-105"
+              >
+                Начать проект <ArrowRight size={18} />
               </Link>
-              <Link href="/about" className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-bold transition-all border border-slate-700">
+              <Link
+                href="/about"
+                className="px-8 py-4 bg-slate-800 hover:bg-slate-700 text-white rounded-full font-bold border border-slate-700"
+              >
                 О нас
               </Link>
             </div>
@@ -34,99 +90,104 @@ const Home = () => {
         </div>
       </section>
 
-      {/* Статистика / Быстрая информация */}
+      {/* СТАТИСТИКА */}
       <section className="py-12 border-y border-slate-800 bg-slate-900/50">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">1 000+</div>
-              <div className="text-slate-500 text-sm">Успешные заказы</div>
+        <div className="container mx-auto px-4 grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
+          {[
+            ['1 000+', 'Успешные заказы'],
+            ['100 000+', 'Материалы'],
+            ['500+', 'Продавцы'],
+            ['100+', 'Компании'],
+          ].map(([value, label], i) => (
+            <div key={i} data-aos="fade-up" data-aos-delay={i * 150}>
+              <div className="text-3xl font-bold text-white">{value}</div>
+              <div className="text-slate-500 text-sm">{label}</div>
             </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">100 000+</div>
-              <div className="text-slate-500 text-sm">Строительные материалы</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">500+</div>
-              <div className="text-slate-500 text-sm">Продавцы на Marketplace</div>
-            </div>
-            <div>
-              <div className="text-3xl font-bold text-white mb-1">100+</div>
-              <div className="text-slate-500 text-sm">Активные компании</div>
-            </div>
-          </div>
+          ))}
         </div>
       </section>
 
-      {/* Сетка услуг */}
+      {/* УСЛУГИ */}
       <section className="py-24 bg-slate-950">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Наши услуги</h2>
-            <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              USD SYSTEM предлагает комплексные решения для всех этапов вашего бизнеса.
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-16" data-aos="fade-up">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-4">
+              Наши услуги
+            </h2>
+            <p className="text-slate-400 max-w-2xl mx-auto">
+              Комплексные решения для всех этапов бизнеса
             </p>
           </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-12">
+          <div className="grid md:grid-cols-2 gap-12">
             <ServiceCard
-              icon={<Cpu className="text-blue-400" size={32} />}
+              icon={<Cpu size={32} className="text-blue-400" />}
               title="USD ERP"
-              description="Полная систематизация производственных процессов и умные решения для управления."
+              description="Умное управление производством"
               link="/usdsoft"
+              delay={0}
             />
             <ServiceCard
-              icon={<Building2 className="text-teal-400" size={32} />}
+              icon={<Building2 size={32} className="text-teal-400" />}
               title="USD SOFT"
-              description="Специальная CRM для строительных компаний: склад, HR, финансовый контроль."
+              description="CRM для строительных компаний"
               link="/usderp"
+              delay={150}
             />
             <ServiceCard
-              icon={<ShoppingCart className="text-orange-400" size={32} />}
+              icon={<ShoppingCart size={32} className="text-orange-400" />}
               title="Marketplace"
-              description="Большая и удобная онлайн-платформа для продажи строительных материалов."
+              description="Онлайн-платформа для продаж"
               link="/usdfinance"
+              delay={300}
             />
             <ServiceCard
-              icon={<Truck className="text-purple-400" size={32} />}
+              icon={<Truck size={32} className="text-purple-400" />}
               title="Логистика"
-              description="Цифровое управление перевозкой и доставкой грузов."
+              description="Управление доставкой"
               link="/"
+              delay={450}
             />
           </div>
         </div>
       </section>
 
-      {/* Визуализация проекта */}
-      <section className="py-24 bg-slate-900 overflow-hidden">
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
-            <div className="lg:w-1/2">
-              <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[white]">Интеграция Marketplace & CRM</h2>
-              <p className="text-slate-400 mb-8 leading-relaxed">
-                Наши решения позволяют строительным компаниям не только удобно закупать материалы, но и отслеживать остатки на складе в реальном времени. Все процессы объединены в единую экосистему.
-              </p>
-              <ul className="space-y-4">
-                {[
-                  "Контроль склада в реальном времени",
-                  "Автоматизированная HR-система",
-                  "Безопасные финансовые транзакции",
-                  "Интеллектуальные маршруты логистики"
-                ].map((item, idx) => (
-                  <li key={idx} className="flex items-center space-x-3 text-slate-200">
-                    <CheckCircle2 className="text-blue-500 flex-shrink-0" size={20} />
-                    <span>{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div className="lg:w-1/2 relative">
-              <div className="relative z-10 rounded-2xl overflow-hidden shadow-2xl border border-slate-700">
-                <img src="https://picsum.photos/800/600?random=1" alt="Dashboard" className="w-full grayscale hover:grayscale-0 transition-all duration-700" />
-                <div className="absolute inset-0 bg-blue-600/10 mix-blend-overlay"></div>
-              </div>
-              <div className="absolute -top-10 -right-10 w-64 h-64 bg-blue-500/20 blur-[80px] rounded-full"></div>
-            </div>
+      {/* ИНТЕГРАЦИЯ */}
+      <section className="py-24 bg-slate-900">
+        <div className="container mx-auto px-4 flex flex-col lg:flex-row gap-16 items-center">
+          <div className="lg:w-1/2" data-aos="fade-right">
+            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+              Интеграция Marketplace & CRM
+            </h2>
+            <p className="text-slate-400 mb-8">
+              Все процессы объединены в единую экосистему
+            </p>
+            <ul className="space-y-4">
+              {[
+                'Контроль склада',
+                'HR-система',
+                'Финансы',
+                'Логистика',
+              ].map((item, i) => (
+                <li
+                  key={i}
+                  className="flex items-center gap-3 text-slate-200"
+                  data-aos="fade-up"
+                  data-aos-delay={i * 150}
+                >
+                  <CheckCircle2 size={20} className="text-blue-500" />
+                  {item}
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:w-1/2 relative" data-aos="fade-left">
+            <img
+              src="https://s.glavbukh.ru/images/preview/1200x800/48b6b509cee037071bd39322dd6d6afe.webp"
+              alt="Dashboard"
+              className="rounded-2xl shadow-2xl border border-slate-700 grayscale hover:grayscale-0 transition-all duration-700"
+            />
           </div>
         </div>
       </section>
@@ -134,14 +195,20 @@ const Home = () => {
   );
 };
 
-const ServiceCard = ({ icon, title, description, link }) => (
-  <Link href={link} className="p-8 rounded-3xl glass hover:bg-slate-800/50 transition-all group">
-    <div className="mb-6 p-4 rounded-2xl bg-slate-900 inline-block group-hover:scale-110 transition-transform">{icon}</div>
-    <h3 className="text-xl font-bold mb-3 text-white">{title}</h3>
-    <p className="text-slate-400 text-sm leading-relaxed mb-6">{description}</p>
-    <div className="flex items-center text-blue-400 font-semibold group-hover:translate-x-2 transition-transform">
-      <span>Подробнее</span>
-      <ArrowRight size={16} className="ml-2" />
+const ServiceCard = ({ icon, title, description, link, delay }) => (
+  <Link
+    href={link}
+    data-aos="fade-up"
+    data-aos-delay={delay}
+    className="p-8 rounded-3xl glass hover:bg-slate-800/50 transition-all hover:-translate-y-2"
+  >
+    <div className="mb-6 p-4 bg-slate-900 rounded-2xl inline-block">
+      {icon}
+    </div>
+    <h3 className="text-xl font-bold text-white mb-3">{title}</h3>
+    <p className="text-slate-400 mb-6">{description}</p>
+    <div className="flex items-center text-blue-400 font-semibold">
+      Подробнее <ArrowRight size={16} className="ml-2" />
     </div>
   </Link>
 );

@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useCallback } from 'react';
-import { ShoppingCart, Package, CheckCircle, Send, SearchIcon, Loader2, ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-react';
+import { ShoppingCart, Package, CheckCircle, Send, SearchIcon, Loader2, ChevronLeft, ChevronRight, Plus, X, Edit2 } from 'lucide-react';
 import axios from 'axios';
 import debounce from 'lodash/debounce';
 
@@ -25,6 +25,13 @@ export default function Offers() {
     const [limit, setLimit] = useState(15);
     const [suggestions, setSuggestions] = useState([]);
     const [showSuggestions, setShowSuggestions] = useState(false);
+    const [showManualAdd, setShowManualAdd] = useState(false);
+    const [manualProduct, setManualProduct] = useState({
+        name: '',
+        quantity: '',
+        unit: 'шт',
+        notes: ''
+    });
 
     // Функция транслитерации кириллицы в латиницу
     const transliterateToLatin = (text) => {
@@ -130,7 +137,7 @@ export default function Offers() {
             suggestionsSet.add(cyrillicTransliteration);
         }
 
-        // Популярные поисковые запросы (можно добавить больше)
+        // Популярные поисковые запросы
         const popularQueries = [
             'краска',
             'лак',
@@ -154,7 +161,6 @@ export default function Offers() {
             'кисть'
         ];
 
-        // Добавляем популярные запросы, которые начинаются с введенного текста
         popularQueries.forEach(query => {
             if (query.toLowerCase().startsWith(termLower) ||
                 transliterateToLatin(query).toLowerCase().startsWith(termLower)) {
@@ -162,7 +168,7 @@ export default function Offers() {
             }
         });
 
-        return Array.from(suggestionsSet).slice(0, 5); // Ограничиваем 5 подсказками
+        return Array.from(suggestionsSet).slice(0, 5);
     };
 
     // Функция поиска продуктов с пагинацией
@@ -184,18 +190,12 @@ export default function Offers() {
                 const data = response.data;
 
                 if (data.data && Array.isArray(data.data) && data.pagination) {
-                    // Используем структуру из API
                     const items = data.data;
                     const paginationData = data.pagination;
 
-                    // Создаем уникальные продукты с помощью Map
                     const uniqueProducts = new Map();
-
                     items.forEach(item => {
-                        // Создаем уникальный ключ на основе id и batch
                         const uniqueKey = `${item.product.id}-${item.batch || 'no-batch'}`;
-
-                        // Если продукт с таким ключом еще не добавлен, добавляем
                         if (!uniqueProducts.has(uniqueKey)) {
                             uniqueProducts.set(uniqueKey, {
                                 id: uniqueKey,
@@ -211,7 +211,6 @@ export default function Offers() {
                         }
                     });
 
-                    // Преобразуем Map обратно в массив
                     const formattedProducts = Array.from(uniqueProducts.values());
                     setProducts(formattedProducts);
                     setTotalItems(paginationData.totalCount);
@@ -244,7 +243,6 @@ export default function Offers() {
         const value = e.target.value;
         setSearchTerm(value);
 
-        // Генерируем подсказки
         const newSuggestions = generateSuggestions(value);
         setSuggestions(newSuggestions);
         setShowSuggestions(newSuggestions.length > 0);
@@ -268,7 +266,7 @@ export default function Offers() {
         searchProducts(suggestion, 1);
     };
 
-    // Обработчик изменения страницы (без автоматического скролла)
+    // Обработчик изменения страницы
     const handlePageChange = (page) => {
         if (page < 1 || page > totalPages || page === currentPage) return;
         setCurrentPage(page);
@@ -284,6 +282,43 @@ export default function Offers() {
         }));
     };
 
+    // Обработчик изменения ручного ввода продукта
+    const handleManualProductChange = (e) => {
+        const { name, value } = e.target;
+        setManualProduct(prev => ({
+            ...prev,
+            [name]: value
+        }));
+    };
+
+    // Добавление товара вручную
+    const handleAddManualProduct = () => {
+        if (!manualProduct.name.trim()) {
+            setMessage('❌ Введите название товара');
+            return;
+        }
+
+        const productString = manualProduct.quantity && manualProduct.quantity.trim() && manualProduct.unit
+            ? `${manualProduct.name} (${manualProduct.quantity} ${manualProduct.unit}${manualProduct.notes ? ` - ${manualProduct.notes}` : ''})`
+            : manualProduct.name;
+
+        if (!selectedProducts.includes(productString)) {
+            setSelectedProducts(prev => [...prev, productString]);
+            setMessage('✅ Товар добавлен вручную');
+
+            // Сброс формы
+            setManualProduct({
+                name: '',
+                quantity: '',
+                unit: 'шт',
+                notes: ''
+            });
+            setShowManualAdd(false);
+        } else {
+            setMessage('⚠️ Этот товар уже добавлен');
+        }
+    };
+
     // Обработчик выбора/отмены выбора продукта
     const handleProductSelect = (productName) => {
         setSelectedProducts(prev => {
@@ -293,6 +328,29 @@ export default function Offers() {
                 return [...prev, productName];
             }
         });
+    };
+
+    // Удаление продукта из выбранных
+    const handleRemoveProduct = (productName) => {
+        setSelectedProducts(prev => prev.filter(name => name !== productName));
+    };
+
+    // Редактирование ручного продукта
+    const handleEditManualProduct = (productString) => {
+        // Разбираем строку продукта на составляющие
+        const match = productString.match(/^(.*?)(?:\s*\((\d+(?:\.\d+)?)\s*(\S+)(?:\s*-\s*(.*))?\))?$/);
+
+        if (match) {
+            const [, name, quantity, unit, notes] = match;
+            setManualProduct({
+                name: name.trim(),
+                quantity: quantity || '',
+                unit: unit || 'шт',
+                notes: notes || ''
+            });
+            setShowManualAdd(true);
+            handleRemoveProduct(productString);
+        }
     };
 
     // Форматирование цены
@@ -313,7 +371,6 @@ export default function Offers() {
     const handleSubmit = async (e) => {
         e.preventDefault();
 
-        // Валидация
         if (!formData.full_name.trim()) {
             setMessage('Пожалуйста, введите ваше имя');
             return;
@@ -333,11 +390,10 @@ export default function Offers() {
         setMessage('');
 
         try {
-            // Отправка данных на бэкенд с именами продуктов
             const response = await axios.post('https://api.usderp.uz/crm/api/offers', {
                 full_name: formData.full_name,
                 phone_number: formData.phone_number,
-                products: formData.products // Отправляем массив имен продуктов
+                products: formData.products
             }, {
                 headers: {
                     'Content-Type': 'application/json'
@@ -363,6 +419,13 @@ export default function Offers() {
                 setLimit(15);
                 setSuggestions([]);
                 setShowSuggestions(false);
+                setManualProduct({
+                    name: '',
+                    quantity: '',
+                    unit: 'шт',
+                    notes: ''
+                });
+                setShowManualAdd(false);
             } else {
                 throw new Error('Ошибка при отправке');
             }
@@ -419,6 +482,12 @@ export default function Offers() {
         return pages;
     };
 
+    // Проверяем, является ли продукт ручным добавлением
+    const isManualProduct = (productString) => {
+        return selectedProducts.includes(productString) &&
+            !products.some(p => p.name === productString);
+    };
+
     return (
         <div className="mt-16 mb-24">
             {/* Заголовок секции */}
@@ -428,7 +497,7 @@ export default function Offers() {
                 </div>
                 <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Оставить заявку на товары</h2>
                 <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-                    Найдите нужные строительные материалы по названию и оставьте заявку. Наш менеджер свяжется с вами для уточнения деталей.
+                    Найдите нужные строительные материалы или добавьте свои вручную. Наш менеджер свяжется с вами для уточнения деталей.
                 </p>
             </div>
 
@@ -436,7 +505,9 @@ export default function Offers() {
                 {/* Форма в центре */}
                 <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8 mb-8">
                     {message && (
-                        <div className={`mb-6 p-4 rounded-xl ${message.includes('✅') ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' : 'bg-red-500/10 border border-red-500/20 text-red-400'}`}>
+                        <div className={`mb-6 p-4 rounded-xl ${message.includes('✅') ? 'bg-emerald-500/10 border border-emerald-500/20 text-emerald-400' :
+                            message.includes('⚠️') ? 'bg-yellow-500/10 border border-yellow-500/20 text-yellow-400' :
+                                'bg-red-500/10 border border-red-500/20 text-red-400'}`}>
                             <div className="flex items-center gap-2">
                                 {message.includes('✅') ? <CheckCircle className="w-5 h-5" /> : null}
                                 <span>{message}</span>
@@ -482,28 +553,62 @@ export default function Offers() {
                         {/* Выбранные продукты */}
                         {selectedProducts.length > 0 && (
                             <div className="bg-slate-800/30 border border-slate-700 rounded-xl p-4">
-                                <div className="flex items-center gap-2 mb-3">
-                                    <Package className="w-5 h-5 text-blue-400" />
-                                    <span className="text-sm font-medium text-slate-300">
-                                        Выбрано товаров: {selectedProducts.length}
-                                    </span>
+                                <div className="flex items-center justify-between mb-3">
+                                    <div className="flex items-center gap-2">
+                                        <Package className="w-5 h-5 text-blue-400" />
+                                        <span className="text-sm font-medium text-slate-300">
+                                            Выбрано товаров: {selectedProducts.length}
+                                        </span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowManualAdd(!showManualAdd)}
+                                        className="flex items-center gap-2 text-sm px-3 py-1.5 bg-blue-500/10 hover:bg-blue-500/20 text-blue-400 hover:text-blue-300 rounded-lg transition-colors"
+                                    >
+                                        <Plus className="w-4 h-4" />
+                                        Добавить вручную
+                                    </button>
                                 </div>
+
                                 <div className="flex flex-wrap gap-2">
                                     {selectedProducts.map((productName, index) => {
-                                        const product = products.find(p => p.name === productName);
+                                        const isManual = isManualProduct(productName);
                                         return (
                                             <div
                                                 key={`${productName}-${index}`}
-                                                className="flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 px-3 py-2 rounded-lg"
+                                                className={`flex items-center gap-2 px-3 py-2 rounded-lg ${isManual
+                                                    ? 'bg-amber-500/10 border border-amber-500/20'
+                                                    : 'bg-blue-500/10 border border-blue-500/20'
+                                                    }`}
                                             >
-                                                <span className="text-sm text-blue-300">{productName}</span>
-                                                <button
-                                                    type="button"
-                                                    onClick={() => handleProductSelect(productName)}
-                                                    className="text-blue-400 hover:text-blue-300 text-xs"
-                                                >
-                                                    ✕
-                                                </button>
+                                                {isManual ? (
+                                                    <Edit2 className="w-3 h-3 text-amber-400" />
+                                                ) : (
+                                                    <Package className="w-3 h-3 text-blue-400" />
+                                                )}
+                                                <span className={`text-sm ${isManual ? 'text-amber-300' : 'text-blue-300'}`}>
+                                                    {productName}
+                                                </span>
+                                                <div className="flex items-center gap-1">
+                                                    {isManual && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => handleEditManualProduct(productName)}
+                                                            className="text-amber-400 hover:text-amber-300 text-xs p-0.5"
+                                                            title="Редактировать"
+                                                        >
+                                                            <Edit2 className="w-3 h-3" />
+                                                        </button>
+                                                    )}
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => handleRemoveProduct(productName)}
+                                                        className="text-slate-400 hover:text-red-400 text-xs p-0.5"
+                                                        title="Удалить"
+                                                    >
+                                                        <X className="w-3 h-3" />
+                                                    </button>
+                                                </div>
                                             </div>
                                         );
                                     })}
@@ -511,11 +616,133 @@ export default function Offers() {
                             </div>
                         )}
 
+                        {/* Форма добавления товара вручную */}
+                        {showManualAdd && (
+                            <div className="bg-slate-800/30 border border-slate-700 rounded-xl p-4 animate-fadeIn">
+                                <div className="flex items-center justify-between mb-4">
+                                    <div className="flex items-center gap-2">
+                                        <Plus className="w-5 h-5 text-blue-400" />
+                                        <span className="text-sm font-medium text-slate-300">
+                                            Добавление товара вручную
+                                        </span>
+                                    </div>
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowManualAdd(false)}
+                                        className="text-slate-400 hover:text-white p-1"
+                                    >
+                                        <X className="w-5 h-5" />
+                                    </button>
+                                </div>
+
+                                <div className="space-y-4">
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-300 mb-2">
+                                            Название товара *
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="name"
+                                            value={manualProduct.name}
+                                            onChange={handleManualProductChange}
+                                            className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500"
+                                            placeholder="Например: Специальный раствор для кладки"
+                                        />
+                                    </div>
+
+                                    <div className="grid grid-cols-2 gap-4">
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-300 mb-2">
+                                                Количество
+                                            </label>
+                                            <input
+                                                type="number"
+                                                name="quantity"
+                                                value={manualProduct.quantity}
+                                                onChange={handleManualProductChange}
+                                                className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500"
+                                                placeholder="10"
+                                                min="0"
+                                                step="0.01"
+                                            />
+                                        </div>
+
+                                        <div>
+                                            <label className="block text-sm font-medium text-slate-300 mb-2">
+                                                Единица измерения
+                                            </label>
+                                            <select
+                                                name="unit"
+                                                value={manualProduct.unit}
+                                                onChange={handleManualProductChange}
+                                                className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white"
+                                            >
+                                                <option value="шт">шт</option>
+                                                <option value="кг">кг</option>
+                                                <option value="л">л</option>
+                                                <option value="м">м</option>
+                                                <option value="м²">м²</option>
+                                                <option value="м³">м³</option>
+                                                <option value="упак">упак</option>
+                                                <option value="рулон">рулон</option>
+                                                <option value="мешок">мешок</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                    <div>
+                                        <label className="block text-sm font-medium text-slate-300 mb-2">
+                                            Примечания (необязательно)
+                                        </label>
+                                        <input
+                                            type="text"
+                                            name="notes"
+                                            value={manualProduct.notes}
+                                            onChange={handleManualProductChange}
+                                            className="w-full px-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500"
+                                            placeholder="Например: определенный цвет, марка, размер"
+                                        />
+                                    </div>
+
+                                    <div className="flex gap-3">
+                                        <button
+                                            type="button"
+                                            onClick={handleAddManualProduct}
+                                            className="px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl font-medium transition-colors flex items-center gap-2"
+                                        >
+                                            <Plus className="w-4 h-4" />
+                                            Добавить товар
+                                        </button>
+                                        <button
+                                            type="button"
+                                            onClick={() => setShowManualAdd(false)}
+                                            className="px-4 py-2 bg-slate-700 hover:bg-slate-600 text-slate-300 rounded-xl font-medium transition-colors"
+                                        >
+                                            Отмена
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
+                        {!showManualAdd && selectedProducts.length === 0 && (
+                            <div className="text-center py-4">
+                                <button
+                                    type="button"
+                                    onClick={() => setShowManualAdd(true)}
+                                    className="inline-flex items-center gap-2 text-blue-400 hover:text-blue-300 transition-colors"
+                                >
+                                    <Plus className="w-4 h-4" />
+                                    Не нашли нужный товар? Добавьте его вручную
+                                </button>
+                            </div>
+                        )}
+
                         <button
                             type="submit"
-                            disabled={isSubmitting}
-                            className={`w-full py-4 px-6 rounded-xl font-medium text-white flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitting
-                                ? 'bg-blue-600/50 cursor-not-allowed'
+                            disabled={isSubmitting || selectedProducts.length === 0}
+                            className={`w-full py-4 px-6 rounded-xl font-medium text-white flex items-center justify-center gap-2 transition-all duration-300 ${isSubmitting || selectedProducts.length === 0
+                                ? 'bg-blue-600/30 cursor-not-allowed'
                                 : 'bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 hover:shadow-lg hover:shadow-blue-500/20'
                                 }`}
                         >
@@ -527,7 +754,7 @@ export default function Offers() {
                             ) : (
                                 <>
                                     <Send className="w-5 h-5" />
-                                    Отправить заявку
+                                    Отправить заявку ({selectedProducts.length} товаров)
                                 </>
                             )}
                         </button>
@@ -538,62 +765,66 @@ export default function Offers() {
                 <div className="bg-slate-900/50 backdrop-blur-sm border border-slate-800 rounded-3xl p-8">
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
                         <div>
-                            <h3 className="text-xl font-bold text-white mb-2">Поиск и выбор товаров</h3>
+                            <h3 className="text-xl font-bold text-white mb-2">Поиск товаров в каталоге</h3>
                             <p className="text-slate-400 text-sm">
-                                Начните вводить название товара для поиска
+                                Начните вводить название товара для поиска в базе
                             </p>
                         </div>
 
-                        <div className="relative search-container">
-                            <div className="relative">
-                                <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-500" />
-                                <input
-                                    type="text"
-                                    placeholder="Поиск товаров по названию..."
-                                    value={searchTerm}
-                                    onChange={handleSearchChange}
-                                    onFocus={() => {
-                                        if (suggestions.length > 0) {
-                                            setShowSuggestions(true);
-                                        }
-                                    }}
-                                    className="w-full md:w-80 pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500"
-                                />
-                                {isSearching && (
-                                    <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
-                                        <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+                        <div className="flex items-center gap-3">
+                            
+
+                            <div className="relative search-container">
+                                <div className="relative">
+                                    <SearchIcon className="absolute left-3 top-1/2 transform -translate-y-1/2 w-5 h-5 text-slate-500" />
+                                    <input
+                                        type="text"
+                                        placeholder="Поиск товаров по названию..."
+                                        value={searchTerm}
+                                        onChange={handleSearchChange}
+                                        onFocus={() => {
+                                            if (suggestions.length > 0) {
+                                                setShowSuggestions(true);
+                                            }
+                                        }}
+                                        className="w-full md:w-80 pl-10 pr-4 py-2 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500"
+                                    />
+                                    {isSearching && (
+                                        <div className="absolute right-3 top-1/2 transform -translate-y-1/2">
+                                            <Loader2 className="w-4 h-4 text-blue-400 animate-spin" />
+                                        </div>
+                                    )}
+                                </div>
+
+                                {/* Подсказки */}
+                                {showSuggestions && suggestions.length > 0 && (
+                                    <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-xl shadow-lg z-10 max-h-60 overflow-y-auto">
+                                        <div className="p-2">
+                                            <div className="text-xs text-slate-400 px-3 py-2 mb-1 border-b border-slate-700">
+                                                Возможно вы ищете:
+                                            </div>
+                                            {suggestions.map((suggestion, index) => (
+                                                <button
+                                                    key={index}
+                                                    type="button"
+                                                    onClick={() => handleSuggestionClick(suggestion)}
+                                                    className="w-full text-left px-3 py-2 hover:bg-slate-700/50 rounded-lg text-slate-300 hover:text-white transition-colors flex items-center gap-2"
+                                                >
+                                                    <SearchIcon className="w-3 h-3 text-slate-500" />
+                                                    {suggestion}
+                                                    {suggestion !== searchTerm && (
+                                                        <span className="text-xs text-slate-500 ml-auto">
+                                                            {suggestion === transliterateToLatin(searchTerm) ? 'латиница' :
+                                                                suggestion === transliterateToCyrillic(searchTerm) ? 'кириллица' :
+                                                                    'подсказка'}
+                                                        </span>
+                                                    )}
+                                                </button>
+                                            ))}
+                                        </div>
                                     </div>
                                 )}
                             </div>
-
-                            {/* Подсказки */}
-                            {showSuggestions && suggestions.length > 0 && (
-                                <div className="absolute top-full left-0 right-0 mt-1 bg-slate-800 border border-slate-700 rounded-xl shadow-lg z-10 max-h-60 overflow-y-auto">
-                                    <div className="p-2">
-                                        <div className="text-xs text-slate-400 px-3 py-2 mb-1 border-b border-slate-700">
-                                            Возможно вы ищете:
-                                        </div>
-                                        {suggestions.map((suggestion, index) => (
-                                            <button
-                                                key={index}
-                                                type="button"
-                                                onClick={() => handleSuggestionClick(suggestion)}
-                                                className="w-full text-left px-3 py-2 hover:bg-slate-700/50 rounded-lg text-slate-300 hover:text-white transition-colors flex items-center gap-2"
-                                            >
-                                                <SearchIcon className="w-3 h-3 text-slate-500" />
-                                                {suggestion}
-                                                {suggestion !== searchTerm && (
-                                                    <span className="text-xs text-slate-500 ml-auto">
-                                                        {suggestion === transliterateToLatin(searchTerm) ? 'латиница' :
-                                                            suggestion === transliterateToCyrillic(searchTerm) ? 'кириллица' :
-                                                                'подсказка'}
-                                                    </span>
-                                                )}
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            )}
                         </div>
                     </div>
 
@@ -604,7 +835,15 @@ export default function Offers() {
                                 <SearchIcon className="w-12 h-12 text-slate-500" />
                             </div>
                             <p className="text-slate-400 text-lg mb-2">Начните поиск товаров</p>
-                            <p className="text-slate-500 text-sm">Введите название товара в поле поиска выше</p>
+                            <p className="text-slate-500 text-sm mb-4">Введите название товара в поле поиска выше</p>
+                            <button
+                                type="button"
+                                onClick={() => setShowManualAdd(true)}
+                                className="inline-flex items-center gap-2 px-4 py-2 bg-blue-600 hover:bg-blue-700 text-white rounded-xl transition-colors"
+                            >
+                                <Plus className="w-4 h-4" />
+                                Или добавьте товар вручную
+                            </button>
                         </div>
                     )}
 
@@ -628,9 +867,21 @@ export default function Offers() {
                                         </span>
                                     )}
                                 </p>
-                                <p className="text-slate-400 text-sm">
-                                    Страница {currentPage} из {totalPages}
-                                </p>
+
+                                <div className="flex items-center gap-3">
+                                    <button
+                                        type="button"
+                                        onClick={() => setShowManualAdd(true)}
+                                        className="flex items-center gap-2 px-3 py-1.5 text-sm bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white rounded-lg transition-colors"
+                                    >
+                                        <Plus className="w-3 h-3" />
+                                        Не нашли? Добавьте вручную
+                                    </button>
+
+                                    <p className="text-slate-400 text-sm">
+                                        Страница {currentPage} из {totalPages}
+                                    </p>
+                                </div>
                             </div>
 
                             {products.length > 0 ? (
@@ -689,19 +940,6 @@ export default function Offers() {
                                             </div>
 
                                             <div className="flex items-center gap-2">
-                                                {/* Кнопка на первую страницу */}
-                                                <button
-                                                    onClick={() => handlePageChange(1)}
-                                                    disabled={currentPage === 1}
-                                                    className={`p-2 rounded-lg ${currentPage === 1
-                                                        ? 'text-slate-600 cursor-not-allowed'
-                                                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                                                        }`}
-                                                    title="Первая страница"
-                                                >
-                                                    <ChevronsLeft className="w-5 h-5" />
-                                                </button>
-
                                                 {/* Кнопка на предыдущую страницу */}
                                                 <button
                                                     onClick={() => handlePageChange(currentPage - 1)}
@@ -743,19 +981,6 @@ export default function Offers() {
                                                 >
                                                     <ChevronRight className="w-5 h-5" />
                                                 </button>
-
-                                                {/* Кнопка на последнюю страницу */}
-                                                <button
-                                                    onClick={() => handlePageChange(totalPages)}
-                                                    disabled={currentPage === totalPages}
-                                                    className={`p-2 rounded-lg ${currentPage === totalPages
-                                                        ? 'text-slate-600 cursor-not-allowed'
-                                                        : 'text-slate-400 hover:text-white hover:bg-slate-800'
-                                                        }`}
-                                                    title="Последняя страница"
-                                                >
-                                                    <ChevronsRight className="w-5 h-5" />
-                                                </button>
                                             </div>
 
                                             <div className="flex items-center gap-2">
@@ -780,30 +1005,60 @@ export default function Offers() {
                                         <SearchIcon className="w-12 h-12 text-slate-500" />
                                     </div>
                                     <p className="text-slate-400 text-lg mb-2">Товары не найдены</p>
-                                    <p className="text-slate-500 text-sm mb-4">Попробуйте изменить поисковый запрос</p>
+                                    <p className="text-slate-500 text-sm mb-6">Попробуйте изменить поисковый запрос или добавьте товар вручную</p>
 
-                                    {suggestions.length > 0 && (
-                                        <div className="max-w-md mx-auto">
-                                            <p className="text-slate-400 mb-2">Возможно вы имели в виду:</p>
-                                            <div className="flex flex-wrap gap-2 justify-center">
-                                                {suggestions.slice(0, 3).map((suggestion, index) => (
-                                                    <button
-                                                        key={index}
-                                                        onClick={() => handleSuggestionClick(suggestion)}
-                                                        className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white transition-colors"
-                                                    >
-                                                        {suggestion}
-                                                    </button>
-                                                ))}
+                                    <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                                        {suggestions.length > 0 && (
+                                            <div>
+                                                <p className="text-slate-400 mb-2">Возможно вы имели в виду:</p>
+                                                <div className="flex flex-wrap gap-2 justify-center">
+                                                    {suggestions.slice(0, 3).map((suggestion, index) => (
+                                                        <button
+                                                            key={index}
+                                                            onClick={() => handleSuggestionClick(suggestion)}
+                                                            className="px-4 py-2 bg-slate-800 hover:bg-slate-700 rounded-lg text-slate-300 hover:text-white transition-colors"
+                                                        >
+                                                            {suggestion}
+                                                        </button>
+                                                    ))}
+                                                </div>
                                             </div>
+                                        )}
+
+                                        <div className="mt-4 sm:mt-0">
+                                            <button
+                                                type="button"
+                                                onClick={() => setShowManualAdd(true)}
+                                                className="inline-flex items-center gap-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-medium transition-all"
+                                            >
+                                                <Plus className="w-5 h-5" />
+                                                Добавить товар вручную
+                                            </button>
                                         </div>
-                                    )}
+                                    </div>
                                 </div>
                             ) : null}
                         </>
                     )}
                 </div>
             </div>
+
+            <style jsx>{`
+                @keyframes fadeIn {
+                    from {
+                        opacity: 0;
+                        transform: translateY(-10px);
+                    }
+                    to {
+                        opacity: 1;
+                        transform: translateY(0);
+                    }
+                }
+                
+                .animate-fadeIn {
+                    animation: fadeIn 0.3s ease-out;
+                }
+            `}</style>
         </div>
     );
 }
