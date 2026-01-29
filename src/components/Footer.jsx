@@ -5,24 +5,23 @@ import { Facebook, Instagram, Linkedin, Twitter, Mail, Phone, MapPin } from 'luc
 const Footer = () => {
     return (
         <footer className="bg-[#0F172A] border-t border-[#1E293B] pt-16 pb-8">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div>
                         <span className="text-2xl font-bold tracking-tighter text-[#FFFFFF] mb-6 block">
-                            USD<span className="text-[#3B82F6]">GROUP</span>
+                            USD<span className="text-[#3B82F6]">SYSTEM</span>
                         </span>
                         <p className="text-[#94A3B8] text-sm leading-relaxed">
                             Инновационные технологии и цифровые решения, которые поднимают ваш бизнес на новый уровень.
                         </p>
                         <div className="flex space-x-4 mt-6">
-                            <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Facebook size={20} /></a>
-                            <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Instagram size={20} /></a>
+                            {/* <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Facebook size={20} /></a> */}
+                            {/* <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Instagram size={20} /></a> */}
                             <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Linkedin size={20} /></a>
-                            <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Twitter size={20} /></a>
+                            {/* <a href="#" className="text-[#94A3B8] hover:text-[#FFFFFF] transition-colors"><Twitter size={20} /></a> */}
                         </div>
                     </div>
-
                     {/* Services */}
                     <div>
                         <h4 className="text-[#FFFFFF] font-semibold mb-6">Услуги</h4>
@@ -83,7 +82,7 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Phone size={18} className="text-[#3B82F6]" />
-                                <span>+998 71 200 00 00</span>
+                                <span>+998 </span>
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail size={18} className="text-[#3B82F6]" />

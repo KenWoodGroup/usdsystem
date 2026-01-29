@@ -12,7 +12,7 @@ const Home = () => {
         <div className="absolute top-[-10%] left-[-10%] w-[40%] h-[40%] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none"></div>
         <div className="absolute bottom-[-10%] right-[-10%] w-[40%] h-[40%] bg-teal-600/20 blur-[120px] rounded-full pointer-events-none"></div>
 
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="text-center">
             <h1 className="text-5xl text-white lg:text-7xl font-extrabold tracking-tight mb-8">
               Производство → Продажа → Строительство <br />
@@ -36,7 +36,7 @@ const Home = () => {
 
       {/* Статистика / Быстрая информация */}
       <section className="py-12 border-y border-slate-800 bg-slate-900/50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8 text-center">
             <div>
               <div className="text-3xl font-bold text-white mb-1">1 000+</div>
@@ -60,7 +60,7 @@ const Home = () => {
 
       {/* Сетка услуг */}
       <section className="py-24 bg-slate-950">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-16 text-center">
             <h2 className="text-3xl lg:text-4xl font-bold mb-4 text-white">Наши услуги</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">
@@ -99,7 +99,7 @@ const Home = () => {
 
       {/* Визуализация проекта */}
       <section className="py-24 bg-slate-900 overflow-hidden">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <div className="lg:w-1/2">
               <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-[white]">Интеграция Marketplace & CRM</h2>

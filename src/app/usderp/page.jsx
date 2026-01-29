@@ -14,7 +14,7 @@ export default function USDERP() {
 
     return (
         <div className="pt-32 pb-24">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="text-center mb-20">
                     <span className="text-[#3B82F6] font-bold tracking-widest uppercase text-sm">Системы для бизнеса</span>
                     <h1 className="text-4xl lg:text-6xl font-bold mt-4 mb-6 text-[#FFFFFF]">Платформа USD ERP</h1>

@@ -17,7 +17,7 @@ const data = [
 const USDFinance = () => {
   return (
     <div className="pt-32 pb-24 bg-[#020617] min-h-screen">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="container mx-auto px-4 sm:px-6 lg:px-8">
         {/* Заголовок */}
         <div className="text-center mb-20">
           <h1 className="text-4xl lg:text-6xl font-bold mb-6 text-white">USD Finance & Marketplace</h1>

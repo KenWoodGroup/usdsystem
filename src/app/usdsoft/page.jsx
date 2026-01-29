@@ -6,7 +6,7 @@ import { Code2, Smartphone, Globe, Layers, Settings, Cloud } from 'lucide-react'
 export default function USDSoft() {
     return (
         <div className="pt-32 pb-24 bg-[#020617]">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Hero Section */}
                 <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
                     <div>
