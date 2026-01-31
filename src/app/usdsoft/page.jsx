@@ -7,7 +7,6 @@ export default function USDSoft() {
     return (
         <div className="pt-32 pb-24 bg-[#020617]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-
                 {/* Hero Section */}
                 <div className="grid lg:grid-cols-2 gap-16 items-center mb-32">
                     <div className="overflow-hidden" data-aos="fade-up"> {/* Анимация появления */}
@@ -57,7 +56,6 @@ export default function USDSoft() {
                         </div>
                     </div>
                 </div>
-
                 {/* Технологический стек */}
                 <div className="border-t border-[#1E293B] pt-24 overflow-hidden">
                     <h2 className="relative text-3xl font-bold mb-16 text-center text-[#FFFFFF]" data-aos="fade-up">

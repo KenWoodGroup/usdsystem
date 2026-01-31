@@ -18,12 +18,9 @@ const seoLanguages = {
         url: "https://usd-system.uz/about",
     },
 };
-
-// Функция для динамического metadata
 export async function generateMetadata({ searchParams }) {
     const lang = searchParams?.lang || "ru";
     const metadata = seoLanguages[lang] || seoLanguages.ru;
-
     return {
         title: metadata.title,
         description: metadata.description,
