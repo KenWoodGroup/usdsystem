@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useEffect } from "react";
+import React from "react";
 import Link from "next/link";
 import {
     Linkedin,
@@ -8,20 +8,7 @@ import {
     Phone,
     MapPin,
 } from "lucide-react";
-
-import AOS from "aos";
-import "aos/dist/aos.css";
-
 const Footer = () => {
-    useEffect(() => {
-        AOS.init({
-            duration: 800,
-            easing: "ease-out-cubic",
-            once: true,
-            offset: 100,
-        });
-    }, []);
-
     return (
         <footer
             className="bg-[#0F172A] border-t border-[#1E293B] pt-16 pb-8"
@@ -40,10 +27,7 @@ const Footer = () => {
                             бизнес на новый уровень.
                         </p>
                         <div className="flex space-x-4 mt-6">
-                            <a
-                                href="#"
-                                className="text-slate-400 hover:text-white transition-colors"
-                            >
+                            <a href="/offers" className="text-slate-300 hover:text-white transition-colors">
                                 <Linkedin size={20} />
                             </a>
                         </div>

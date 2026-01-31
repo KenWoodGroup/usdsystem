@@ -1,20 +1,8 @@
-'use client'; // 🔥 Важно! Делает компонент клиентским
+'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Mail, Phone, MapPin, Send } from 'lucide-react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
-
 const Contact = () => {
-    useEffect(() => {
-        AOS.init({
-            duration: 900,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 120,
-        });
-    }, []);
-
     return (
         <div className="pt-32 pb-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

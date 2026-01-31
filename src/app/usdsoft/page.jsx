@@ -1,20 +1,9 @@
-'use client'; // 🔥 Важно для интерактивных компонентов
+'use client';
 
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
 import { Code2, Smartphone, Globe, Layers, Settings, Cloud } from 'lucide-react';
 
 export default function USDSoft() {
-    useEffect(() => {
-        AOS.init({
-            duration: 900,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 120,
-        });
-    }, []);
-
     return (
         <div className="pt-32 pb-24 bg-[#020617]">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">

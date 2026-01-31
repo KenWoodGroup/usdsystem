@@ -1,22 +1,10 @@
 'use client';
 
-import React, { useEffect } from 'react';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
+import React from 'react';
 
 import { Warehouse, Users, Receipt, PieChart, ShieldCheck, Zap } from 'lucide-react';
 
 export default function USDERP() {
-
-    useEffect(() => {
-        AOS.init({
-            duration: 900,
-            easing: 'ease-out-cubic',
-            once: true,
-            offset: 120,
-        });
-    }, []);
-
     const features = [
         { icon: <Warehouse />, title: "Управление складом", desc: "Контроль остатков в реальном времени." },
         { icon: <Users />, title: "HR и сотрудники", desc: "Учет зарплат, KPI и рабочего времени." },
