@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import Head from 'next/head';
-import { ArrowRight, Cpu, Building2, Truck, ShoppingCart, CheckCircle2, Globe, MapPin, Phone, Mail, Clock, Users, Shield, Star } from 'lucide-react';
+import { ArrowRight, Cpu, Building2, Truck, ShoppingCart, CheckCircle2 } from 'lucide-react';
 
 const Home = () => {
   return (
@@ -55,14 +55,12 @@ const Home = () => {
         <meta property="og:locale" content="ru_UZ" />
         <meta property="og:locale:alternate" content="uz_UZ" />
         <meta property="og:locale:alternate" content="en_US" />
-        <meta property="og:site_name" content="USD System Uzbekistan" />
 
         {/* Twitter Cards */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="USD System Uzbekistan | Строительная цифровая платформа" />
         <meta name="twitter:description" content="B2B экосистема для строительства, производства и продажи материалов в Узбекистане" />
         <meta name="twitter:image" content="https://usd-system.uz/twitter-image.jpg" />
-        <meta name="twitter:site" content="@usdsystem" />
 
         {/* Дополнительные мета-теги */}
         <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -79,204 +77,123 @@ const Home = () => {
         <meta name="apple-mobile-web-app-capable" content="yes" />
         <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
-        {/* Бизнес-метатеги для расширенных сниппетов */}
-        <meta name="business:contact_data:street_address" content="Улица, дом" />
-        <meta name="business:contact_data:locality" content="Ташкент" />
-        <meta name="business:contact_data:region" content="Ташкент" />
-        <meta name="business:contact_data:postal_code" content="100000" />
-        <meta name="business:contact_data:country_name" content="Узбекистан" />
-        <meta name="business:contact_data:email" content="info@usd-system.uz" />
-        <meta name="business:contact_data:phone_number" content="+998-XX-XXX-XXXX" />
-        <meta name="business:contact_data:website" content="https://usd-system.uz" />
-        <meta name="business:hours:day" content="Понедельник - Пятница" />
-        <meta name="business:hours:start" content="09:00" />
-        <meta name="business:hours:end" content="18:00" />
-
         {/* Структурированные данные (JSON-LD) для лучшего SEO */}
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify([
-              // Основная организация
-              {
-                "@context": "https://schema.org",
-                "@type": "Organization",
-                "@id": "https://usd-system.uz/#organization",
-                "name": "USD System Uzbekistan",
-                "url": "https://usd-system.uz",
-                "logo": "https://usd-system.uz/logo.png",
-                "description": "Цифровая B2B платформа для строительства, производства и продажи материалов в Узбекистане",
-                "foundingDate": "2020",
-                "founders": [
-                  {
-                    "@type": "Person",
-                    "name": "Основатель USD System"
-                  }
-                ],
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "Улица, дом",
-                  "addressLocality": "Ташкент",
-                  "addressRegion": "Ташкент",
-                  "postalCode": "100000",
-                  "addressCountry": "UZ"
-                },
-                "contactPoint": {
-                  "@type": "ContactPoint",
-                  "telephone": "+998-XX-XXX-XXXX",
-                  "contactType": "customer service",
-                  "availableLanguage": ["Russian", "Uzbek", "English"]
-                },
-                "sameAs": [
-                  "https://facebook.com/usdsystemuz",
-                  "https://linkedin.com/company/usd-system-uzbekistan",
-                  "https://instagram.com/usdsystemuz",
-                  "https://t.me/usdsystem"
-                ],
-                "knowsAbout": [
-                  "Строительные материалы",
-                  "ERP системы",
-                  "CRM системы",
-                  "B2B платформы",
-                  "Логистика",
-                  "Digital трансформация"
-                ],
-                "award": [
-                  "Лучшая B2B платформа Узбекистана 2023",
-                  "Инновация года в строительной отрасли"
-                ],
-                "employee": {
-                  "@type": "Person",
-                  "name": "Генеральный директор USD System"
-                }
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              "name": "USD System Uzbekistan",
+              "url": "https://usd-system.uz",
+              "logo": "https://usd-system.uz/logo.png",
+              "description": "Цифровая B2B платформа для строительства, производства и продажи материалов в Узбекистане",
+              "address": {
+                "@type": "PostalAddress",
+                "addressCountry": "Uzbekistan",
+                "addressRegion": "Tashkent",
+                "addressLocality": "Tashkent"
               },
-              // Веб-сайт
-              {
-                "@context": "https://schema.org",
-                "@type": "WebSite",
-                "@id": "https://usd-system.uz/#website",
-                "url": "https://usd-system.uz",
-                "name": "USD System Uzbekistan",
-                "description": "Цифровая B2B платформа для строительного бизнеса",
-                "publisher": {
-                  "@id": "https://usd-system.uz/#organization"
-                }
-              },
-              // Главная страница
-              {
-                "@context": "https://schema.org",
-                "@type": "WebPage",
-                "@id": "https://usd-system.uz/#webpage",
-                "url": "https://usd-system.uz",
-                "inLanguage": "ru",
-                "name": "USD System Uzbekistan | Единая B2B платформа",
-                "description": "Ведущая цифровая экосистема для строительства в Узбекистане",
-                "isPartOf": {
-                  "@id": "https://usd-system.uz/#website"
-                },
-                "breadcrumb": {
-                  "@type": "BreadcrumbList",
-                  "itemListElement": [
-                    {
-                      "@type": "ListItem",
-                      "position": 1,
-                      "name": "Главная",
-                      "item": "https://usd-system.uz"
-                    }
-                  ]
-                }
-              },
-              // Продукты как SoftwareApplication
-              {
-                "@context": "https://schema.org",
-                "@type": "SoftwareApplication",
-                "name": "USD ERP System",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web",
-                "offers": {
-                  "@type": "Offer",
-                  "price": "0",
-                  "priceCurrency": "USD"
-                },
-                "aggregateRating": {
-                  "@type": "AggregateRating",
-                  "ratingValue": "4.8",
-                  "ratingCount": "250"
-                }
-              },
-              {
-                "@context": "https://schema.org",
-                "@type": "SoftwareApplication",
-                "name": "USD CRM Soft",
-                "applicationCategory": "BusinessApplication",
-                "operatingSystem": "Web"
-              },
-              // Местный бизнес для Google My Business
-              {
-                "@context": "https://schema.org",
-                "@type": "LocalBusiness",
-                "name": "USD System Uzbekistan",
-                "image": "https://usd-system.uz/business-image.jpg",
-                "@id": "https://usd-system.uz",
-                "url": "https://usd-system.uz",
+              "contactPoint": {
+                "@type": "ContactPoint",
                 "telephone": "+998-XX-XXX-XXXX",
-                "priceRange": "$$",
-                "address": {
-                  "@type": "PostalAddress",
-                  "streetAddress": "Улица, дом",
-                  "addressLocality": "Tashkent",
-                  "addressRegion": "Tashkent",
-                  "postalCode": "100000",
-                  "addressCountry": "UZ"
-                },
-                "geo": {
-                  "@type": "GeoCoordinates",
-                  "latitude": 41.2995,
-                  "longitude": 69.2401
-                },
-                "openingHoursSpecification": {
-                  "@type": "OpeningHoursSpecification",
-                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-                  "opens": "09:00",
-                  "closes": "18:00"
-                },
-                "sameAs": [
-                  "https://www.facebook.com/usdsystemuz",
-                  "https://www.linkedin.com/company/usd-system-uzbekistan"
-                ]
+                "contactType": "Customer Service",
+                "availableLanguage": ["Russian", "Uzbek", "English"]
               },
-              // FAQPage для сниппетов с ответами
-              {
-                "@context": "https://schema.org",
-                "@type": "FAQPage",
-                "mainEntity": [
-                  {
-                    "@type": "Question",
-                    "name": "Что такое USD System?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "USD System - это единая B2B платформа для строительного бизнеса в Узбекистане, которая объединяет ERP систему, CRM, маркетплейс строительных материалов и логистику."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Какие услуги предоставляет USD System?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Мы предоставляем ERP систему для управления производством, CRM для строительных компаний, онлайн-маркетплейс строительных материалов и логистические решения."
-                    }
-                  },
-                  {
-                    "@type": "Question",
-                    "name": "Как начать работу с USD System?",
-                    "acceptedAnswer": {
-                      "@type": "Answer",
-                      "text": "Для начала работы оставьте заявку на нашем сайте или свяжитесь с нами по телефону. Мы проведем демонстрацию платформы и поможем с настройкой."
-                    }
-                  }
-                ]
+              "sameAs": [
+                "https://facebook.com/usdsystemuz",
+                "https://linkedin.com/company/usd-system-uzbekistan",
+                "https://instagram.com/usdsystemuz",
+                "https://t.me/usdsystem"
+              ]
+            })
+          }}
+        />
+
+        {/* Дополнительные структурированные данные для продуктов */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "SoftwareApplication",
+              "name": "USD System Platform",
+              "applicationCategory": "BusinessApplication",
+              "operatingSystem": "Web",
+              "offers": {
+                "@type": "Offer",
+                "price": "0",
+                "priceCurrency": "USD"
+              },
+              "author": {
+                "@type": "Organization",
+                "name": "USD System"
               }
-            ])
+            })
+          }}
+        />
+
+        {/* LocalBusiness структурированные данные */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "LocalBusiness",
+              "name": "USD System",
+              "image": "https://usd-system.uz/business-image.jpg",
+              "@id": "https://usd-system.uz",
+              "url": "https://usd-system.uz",
+              "telephone": "+998-XX-XXX-XXXX",
+              "address": {
+                "@type": "PostalAddress",
+                "streetAddress": "Улица, дом",
+                "addressLocality": "Tashkent",
+                "addressRegion": "Tashkent",
+                "postalCode": "100000",
+                "addressCountry": "UZ"
+              },
+              "geo": {
+                "@type": "GeoCoordinates",
+                "latitude": 41.2995,
+                "longitude": 69.2401
+              },
+              "openingHoursSpecification": {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                "opens": "09:00",
+                "closes": "18:00"
+              },
+              "sameAs": [
+                "https://www.facebook.com/usdsystemuz",
+                "https://www.linkedin.com/company/usd-system-uzbekistan"
+              ]
+            })
+          }}
+        />
+
+        {/* Breadcrumb структурированные данные */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "BreadcrumbList",
+              "itemListElement": [
+                {
+                  "@type": "ListItem",
+                  "position": 1,
+                  "name": "Главная",
+                  "item": "https://usd-system.uz"
+                },
+                {
+                  "@type": "ListItem",
+                  "position": 2,
+                  "name": "Услуги",
+                  "item": "https://usd-system.uz/services"
+                }
+              ]
+            })
           }}
         />
       </Head>
@@ -347,37 +264,6 @@ const Home = () => {
           </div>
         </section>
 
-        {/* ИНФО-БЛОК КАК У OLX */}
-        <section className="py-8 bg-slate-900/50 border-y border-slate-800">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto bg-slate-900/70 rounded-xl p-6 border border-slate-700">
-              <h2 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
-                <Globe size={20} className="text-blue-400" />
-                USD System Uzbekistan - Ведущая B2B платформа
-              </h2>
-              <p className="text-slate-300 mb-4">
-                <strong>USD System</strong> - цифровая экосистема для строительного бизнеса в Узбекистане.
-                Объединяем производителей, поставщиков и строительные компании на единой платформе.
-              </p>
-
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Shield size={18} className="text-green-400" />
-                  <span>Безопасные сделки</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Users size={18} className="text-blue-400" />
-                  <span>500+ компаний-партнеров</span>
-                </div>
-                <div className="flex items-center gap-3 text-slate-300">
-                  <Star size={18} className="text-yellow-400" />
-                  <span>Рейтинг 4.8/5.0</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* СТАТИСТИКА */}
         <section className="py-12 border-y border-slate-800 bg-slate-900/50"
           itemScope itemType="https://schema.org/Organization">
@@ -402,74 +288,6 @@ const Home = () => {
                 <div className="text-slate-300 text-sm" aria-label={ariaLabel}>{label}</div>
               </div>
             ))}
-          </div>
-        </section>
-
-        {/* КОНТАКТНАЯ ИНФОРМАЦИЯ ДЛЯ СНИППЕТОВ */}
-        <section className="py-12 bg-slate-950 border-y border-slate-800">
-          <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid md:grid-cols-3 gap-6">
-                {/* Контактная информация */}
-                <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
-                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <Phone size={18} className="text-blue-400" />
-                    Контакты
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-slate-300 flex items-center gap-2">
-                      <Phone size={16} className="text-green-400" />
-                      <span>Телефон: <strong>+998-XX-XXX-XXXX</strong></span>
-                    </p>
-                    <p className="text-slate-300 flex items-center gap-2">
-                      <Mail size={16} className="text-yellow-400" />
-                      <span>Email: <strong>info@usd-system.uz</strong></span>
-                    </p>
-                    <p className="text-slate-300 flex items-center gap-2">
-                      <Clock size={16} className="text-purple-400" />
-                      <span>Время работы: <strong>9:00 - 18:00</strong></span>
-                    </p>
-                  </div>
-                </div>
-
-                {/* Адрес */}
-                <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
-                  <h3 className="text-lg font-bold text-white mb-4 flex items-center gap-2">
-                    <MapPin size={18} className="text-red-400" />
-                    Адрес
-                  </h3>
-                  <div className="space-y-3">
-                    <p className="text-slate-300">
-                      <strong>USD System Uzbekistan</strong><br />
-                      Ташкент, Узбекистан<br />
-                      Улица, дом
-                    </p>
-                    <p className="text-sm text-slate-500">
-                      Штаб-квартира в Ташкенте
-                    </p>
-                  </div>
-                </div>
-
-                {/* Быстрые ссылки */}
-                <div className="bg-slate-900/50 rounded-xl p-6 border border-slate-700">
-                  <h3 className="text-lg font-bold text-white mb-4">Быстрые ссылки</h3>
-                  <div className="space-y-2">
-                    <Link href="/marketplace" className="text-blue-400 hover:text-blue-300 block">
-                      Маркетплейс материалов
-                    </Link>
-                    <Link href="/erp" className="text-blue-400 hover:text-blue-300 block">
-                      ERP система
-                    </Link>
-                    <Link href="/crm" className="text-blue-400 hover:text-blue-300 block">
-                      CRM для строительства
-                    </Link>
-                    <Link href="/login" className="text-blue-400 hover:text-blue-300 block">
-                      Войти в систему
-                    </Link>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
         </section>
 
@@ -566,62 +384,17 @@ const Home = () => {
           </div>
         </section>
 
-        {/* FAQ СЕКЦИЯ ДЛЯ GOOGLE SNIPPETS */}
-        <section className="py-16 bg-slate-950 border-t border-slate-800">
-          <div className="container mx-auto px-4">
-            <h2 className="text-2xl font-bold text-white mb-8 text-center">
-              Часто задаваемые вопросы
-            </h2>
-            <div className="max-w-3xl mx-auto space-y-4">
-              {[
-                {
-                  q: "Что такое USD System?",
-                  a: "USD System - это единая B2B платформа для строительного бизнеса в Узбекистане, которая объединяет ERP систему для управления производством, CRM для строительных компаний, онлайн-маркетплейс строительных материалов и логистические решения."
-                },
-                {
-                  q: "Как начать использовать USD System?",
-                  a: "Для начала работы оставьте заявку на нашем сайте или свяжитесь с нами по телефону. Мы проведем демонстрацию платформы, поможем с настройкой и обучением вашей команды."
-                },
-                {
-                  q: "Сколько стоит подключение к USD System?",
-                  a: "Стоимость зависит от выбранного пакета услуг. Мы предлагаем гибкие тарифы для компаний любого размера - от малого бизнеса до крупных корпораций. Свяжитесь с нами для получения индивидуального предложения."
-                },
-                {
-                  q: "Работает ли USD System по всему Узбекистану?",
-                  a: "Да, USD System работает по всему Узбекистану. Мы обслуживаем клиентов в Ташкенте, Самарканде, Бухаре, Намангане и всех других регионах страны."
-                }
-              ].map((faq, i) => (
-                <div key={i} className="bg-slate-900/50 rounded-lg p-6 border border-slate-700">
-                  <h3 className="text-lg font-semibold text-white mb-2">{faq.q}</h3>
-                  <p className="text-slate-400">{faq.a}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </section>
-
         {/* Скрытый SEO контент для поисковых систем */}
         <div style={{ display: 'none' }} aria-hidden="true">
-          <h1>USD System Uzbekistan</h1>
-          <h2>Ведущая B2B платформа для строительного бизнеса</h2>
-          <p>USD System - цифровая экосистема №1 в Узбекистане для:</p>
+          <h2>USD System Uzbekistan - Ключевые направления</h2>
+          <p>USD System - ведущая B2B платформа для строительства в Узбекистане. Мы предоставляем:</p>
           <ul>
             <li>Строительные материалы (qurilish mollari) в Ташкенте и по всему Узбекистану</li>
-            <li>ERP система для производителей строительных материалов</li>
+            <li>ERP систему для производителей строительных материалов</li>
             <li>CRM для строительных компаний (qurilish korxonalari)</li>
             <li>Онлайн-маркетплейс строительных материалов</li>
             <li>Логистические решения для доставки материалов</li>
-            <li>Финансовый учет строительных проектов</li>
-            <li>Управление складом строительных материалов</li>
           </ul>
-
-          <h3>Контакты USD System:</h3>
-          <p>
-            Адрес: Ташкент, Узбекистан<br />
-            Телефон: +998-XX-XXX-XXXX<br />
-            Email: info@usd-system.uz<br />
-            Сайт: https://usd-system.uz
-          </p>
 
           <h3>Ключевые слова USD System:</h3>
           <p>
@@ -630,8 +403,7 @@ const Home = () => {
             маркетплейс строительных материалов Узбекистан, b2b платформа строительство,
             производство строительных материалов, ishlab chiqarish, логистика материалов,
             доставка qurilish mollari, складское хозяйство, inventory management,
-            финансовый учет строительства, строительный софт Узбекистан,
-            usd erp system, usd crm soft, usd marketplace
+            финансовый учет строительства, строительный софт Узбекистан
           </p>
 
           <h3>USD System на разных языках:</h3>
@@ -651,7 +423,7 @@ const ServiceCard = ({ icon, title, description, link, delay, ariaLabel }) => (
     href={link}
     data-aos="fade-up"
     data-aos-delay={delay}
-    className="group p-8 rounded-3xl glass hover:bg-slate-800/50 transition-all duration-700 hover:-translate-y-2 relative overflow-hidden"
+    className="group p-8 rounded-3xl glass hover:bg-slate-800/50 transition-all duration-700 relative overflow-hidden"
     aria-label={ariaLabel || `Узнать больше о ${title}`}
   >
     {/* Анимированный фон при hover */}

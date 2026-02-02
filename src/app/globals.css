@@ -22,3 +22,51 @@ body {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* Стили для SweetAlert2 */
+.swal2-popup {
+  background: #0f172a !important;
+  border: 1px solid #334155 !important;
+  border-radius: 1rem !important;
+}
+
+.swal2-title {
+  color: #f1f5f9 !important;
+  font-weight: 600 !important;
+}
+
+.swal2-html-container {
+  color: #94a3b8 !important;
+}
+
+.swal2-confirm {
+  background: #3b82f6 !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}
+
+.swal2-confirm:hover {
+  background: #2563eb !important;
+  transform: translateY(-1px) !important;
+}
+
+.swal2-cancel {
+  background: #475569 !important;
+  border: none !important;
+  border-radius: 0.75rem !important;
+  padding: 0.75rem 1.5rem !important;
+  font-weight: 500 !important;
+  transition: all 0.2s !important;
+}
+
+.swal2-cancel:hover {
+  background: #334155 !important;
+  transform: translateY(-1px) !important;
+}
+
+.swal2-loader {
+  border-color: #3b82f6 transparent #3b82f6 transparent !important;
+}
