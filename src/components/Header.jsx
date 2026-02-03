@@ -24,6 +24,7 @@ export default function Header() {
     const navLinks = [
         { name: "Главная", path: "/" },
         { name: "О нас", path: "/about" },
+        { name: "Блог", path: "/blog" },
         { name: "USD ERP", path: "/usderp" },
         { name: "USD CRM", path: "/usdsoft" },
         { name: "USD Market", path: "/usdmarket" },
@@ -57,8 +58,8 @@ export default function Header() {
                                         data-aos="fade-down"
                                         data-aos-delay={i * 80}
                                         className={`px-3 py-2 text-sm font-medium transition-colors duration-200 ${isActive(link.path)
-                                                ? "text-blue-400"
-                                                : "text-slate-300 hover:text-white"
+                                            ? "text-blue-400"
+                                            : "text-slate-300 hover:text-white"
                                             }`}
                                     >
                                         {link.name}
@@ -94,8 +95,8 @@ export default function Header() {
                                     data-aos="fade-right"
                                     data-aos-delay={i * 100}
                                     className={`block px-3 py-4 text-base font-medium border-b border-slate-800 last:border-0 ${isActive(link.path)
-                                            ? "text-blue-400"
-                                            : "text-slate-300"
+                                        ? "text-blue-400"
+                                        : "text-slate-300"
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
