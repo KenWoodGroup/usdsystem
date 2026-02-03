@@ -37,7 +37,7 @@ export default function Offers() {
         name: '',
         full_name: '',
         address: '',
-        phone: '',
+        phone: '+998',
         username: '',
         password: ''
     });
