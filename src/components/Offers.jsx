@@ -77,36 +77,34 @@ export default function Offers() {
                 const response = await axios.get(`https://api.usderp.uz/crm/api/stock/by-name/product/${term}/?page=${page}`);
                 const data = response.data;
 
-                if (data.data && Array.isArray(data.data) && data.pagination) {
+                if (data?.data && Array.isArray(data.data) && data.pagination) {
                     const items = data.data;
                     const paginationData = data.pagination;
 
-                    const uniqueProducts = new Map();
-                    items.forEach(item => {
-                        const uniqueKey = `${item.product.id}-${item.batch || 'no-batch'}`;
-                        if (!uniqueProducts.has(uniqueKey)) {
-                            uniqueProducts.set(uniqueKey, {
-                                id: uniqueKey,
-                                product_id: item.product.id,
-                                name: item.product.name,
-                                unit: item.product.unit,
-                                quantity: item.quantity,
-                                purchase_price: item.purchase_price,
-                                barcode: item.barcode,
-                                batch: item.batch,
-                                category: item.category?.name || 'Без категории'
-                            });
-                        }
-                    });
+                    const formattedProducts = items.map(item => ({
+                        id: item.id, 
+                        product_id: item.product.id,
+                        name: item.product.name,
+                        unit: item.product.unit,
+                        quantity: Number(item.quantity),
+                        purchase_price: Number(item.purchase_price),
+                        barcode: item.barcode,
+                        batch: item.batch,
+                        category: item.product.category?.name || 'Без категории',
+                        location_id: item.location_id,
+                        fixed_quantity: item.fixed_quantity,
+                        createdAt: item.createdAt,
+                        updatedAt: item.updatedAt,
+                    }));
 
-                    const formattedProducts = Array.from(uniqueProducts.values());
                     setProducts(formattedProducts);
                     setTotalItems(paginationData.totalCount);
                     setTotalPages(paginationData.totalPages);
                     setCurrentPage(paginationData.currentPage);
                     setLimit(paginationData.limit);
                     setHasSearched(true);
-                } else {
+                }
+                else {
                     setProducts([]);
                     setTotalItems(0);
                     setTotalPages(1);
@@ -839,7 +837,7 @@ export default function Offers() {
                                                         </div>
                                                     </div>
 
-                                                    <h4 className="font-medium text-white text-sm md:text-base mb-1.5 md:mb-2 line-clamp-2">
+                                                    <h4 className="font-medium text-white text-sm md:text-base mb-1.5 md:mb-2 ">
                                                         {product?.category && (
                                                             <span className="text-xs text-slate-400 block mb-0.5">
                                                                 {product.category} /
