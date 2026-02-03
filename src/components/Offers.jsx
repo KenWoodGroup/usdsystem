@@ -6,6 +6,10 @@ import axios from 'axios';
 import debounce from 'lodash/debounce';
 import Swal from 'sweetalert2';
 
+// Импортируем данные об областях и районах
+import { regionsData} from '../app/regions/regions';
+import { districtsData } from '../app/regions/districts'
+
 export default function Offers() {
     // Шаг 1: Выбор товаров
     const [currentStep, setCurrentStep] = useState(1); // 1: выбор товаров, 2: проверка аккаунта, 3: регистрация, 4: успех
@@ -37,6 +41,43 @@ export default function Offers() {
         username: '',
         password: ''
     });
+
+    // Данные для выбора адреса
+    const [regions] = useState(regionsData);
+    const [districts] = useState(districtsData);
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [selectedDistrict, setSelectedDistrict] = useState('');
+    const [filteredDistricts, setFilteredDistricts] = useState([]);
+
+    // Фильтрация районов при выборе области
+    useEffect(() => {
+        if (selectedRegion) {
+            const filtered = districts.filter(district =>
+                String(district.region_id) === String(selectedRegion)
+            );
+            setFilteredDistricts(filtered);
+            setSelectedDistrict(''); // Сбрасываем выбранный район при смене области
+        } else {
+            setFilteredDistricts([]);
+            setSelectedDistrict('');
+        }
+    }, [selectedRegion, districts]);
+
+    // Обновление адреса при выборе области и района
+    useEffect(() => {
+        if (selectedRegion && selectedDistrict) {
+            const region = regions.find(r => String(r.id) === String(selectedRegion));
+            const district = districts.find(d => String(d.id) === String(selectedDistrict));
+
+            if (region && district) {
+                const address = `${district.name_ru}, ${region.name_ru}`;
+                setRegistrationData(prev => ({
+                    ...prev,
+                    address: address
+                }));
+            }
+        }
+    }, [selectedRegion, selectedDistrict, regions, districts]);
 
     // Функция транслитерации кириллицы в латиницу
     const transliterateToLatin = (text) => {
@@ -82,7 +123,7 @@ export default function Offers() {
                     const paginationData = data.pagination;
 
                     const formattedProducts = items.map(item => ({
-                        id: item.id, 
+                        id: item.id,
                         product_id: item.product.id,
                         name: item.product.name,
                         unit: item.product.unit,
@@ -263,6 +304,18 @@ export default function Offers() {
         }));
     };
 
+    // Обработчик изменения области
+    const handleRegionChange = (e) => {
+        const value = e.target.value;
+        setSelectedRegion(value);
+    };
+
+    // Обработчик изменения района
+    const handleDistrictChange = (e) => {
+        const value = e.target.value;
+        setSelectedDistrict(value);
+    };
+
     // Генерация username на основе названия компании
     const generateUsername = (companyName) => {
         if (!companyName.trim()) return '';
@@ -365,6 +418,24 @@ export default function Offers() {
                 icon: 'warning',
                 title: 'Внимание',
                 text: 'Пароль должен содержать минимум 6 символов',
+                confirmButtonText: 'OK',
+                confirmButtonColor: '#3b82f6',
+                background: '#0f172a',
+                color: '#fff',
+                iconColor: '#f59e0b',
+                customClass: {
+                    popup: 'swal-popup-responsive'
+                }
+            });
+            return;
+        }
+
+        // Проверка адреса (области и района)
+        if (!selectedRegion || !selectedDistrict) {
+            Swal.fire({
+                icon: 'warning',
+                title: 'Внимание',
+                text: 'Пожалуйста, выберите область и район',
                 confirmButtonText: 'OK',
                 confirmButtonColor: '#3b82f6',
                 background: '#0f172a',
@@ -1140,16 +1211,62 @@ export default function Offers() {
 
                                 <div>
                                     <label className="block text-xs md:text-sm font-medium text-slate-300 mb-1.5 md:mb-2">
-                                        Адрес
+                                        Область *
                                     </label>
-                                    <input
-                                        type="text"
-                                        name="address"
-                                        value={registrationData.address}
-                                        onChange={handleRegistrationChange}
-                                        className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500 text-sm md:text-base"
-                                        placeholder="Адрес вашей компании/магазина"
-                                    />
+                                    <select
+                                        value={selectedRegion}
+                                        onChange={handleRegionChange}
+                                        className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white text-sm md:text-base"
+                                        required
+                                    >
+                                        <option value="">Выберите область</option>
+                                        {regions.map(region => (
+                                            <option key={region.id} value={region.id}>
+                                                {region.name_ru}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs md:text-sm font-medium text-slate-300 mb-1.5 md:mb-2">
+                                        Район *
+                                    </label>
+                                    <select
+                                        value={selectedDistrict}
+                                        onChange={handleDistrictChange}
+                                        className="w-full px-3 md:px-4 py-2.5 md:py-3 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white text-sm md:text-base"
+                                        required
+                                        disabled={!selectedRegion}
+                                    >
+                                        <option value="">
+                                            {selectedRegion ? 'Выберите район' : 'Сначала выберите область'}
+                                        </option>
+                                        {filteredDistricts.map(district => (
+                                            <option key={district.id} value={district.id}>
+                                                {district.name_ru}
+                                            </option>
+                                        ))}
+                                    </select>
+                                </div>
+
+                                <div>
+                                    <label className="block text-xs md:text-sm font-medium text-slate-300 mb-1.5 md:mb-2">
+                                        Адрес (улица, дом)
+                                    </label>
+                                    <div className="relative">
+                                        <MapPin className="absolute left-3 top-1/2 transform -translate-y-1/2 w-4 h-4 md:w-5 md:h-5 text-slate-500" />
+                                        <input
+                                            type="text"
+                                            name="address"
+                                            value={registrationData.address}
+                                            onChange={handleRegistrationChange}
+                                            className="w-full pl-9 md:pl-10 pr-4 py-2.5 md:py-3 bg-slate-800/50 border border-slate-700 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent text-white placeholder:text-slate-500 text-sm md:text-base"
+                                            placeholder="Область и район будут добавлены автоматически"
+                                            readOnly
+                                        />
+                                    </div>
+                                 
                                 </div>
 
                                 <div>
@@ -1267,6 +1384,18 @@ export default function Offers() {
                                                         accountType === 'shop' ? 'Магазин' : 'Специалист'}
                                                 </p>
                                                 <p className="text-white font-medium text-sm md:text-base">{registrationData.name}</p>
+                                            </div>
+                                        </div>
+                                    )}
+
+                                    {registrationData.address && (
+                                        <div className="flex items-start gap-2 md:gap-3">
+                                            <div className="p-1.5 md:p-2 bg-blue-500/10 rounded-lg">
+                                                <MapPin className="w-4 h-4 md:w-5 md:h-5 text-blue-400" />
+                                            </div>
+                                            <div className="flex-1">
+                                                <p className="text-xs md:text-sm text-slate-400 mb-0.5">Адрес</p>
+                                                <p className="text-white font-medium text-sm md:text-base">{registrationData.address}</p>
                                             </div>
                                         </div>
                                     )}
