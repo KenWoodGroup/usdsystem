@@ -100,7 +100,7 @@ const Footer = () => {
                             <li className="flex items-start space-x-3">
                                 <MapPin size={18} className="text-blue-500 mt-0.5" />
                                 <span>
-                                    г. Ташкент, Чиланзарский район, 5-й квартал
+                                    700002, Tashkent, Tashkent Region, Узбекистан
                                 </span>
                             </li>
                             <li className="flex items-center space-x-3">
