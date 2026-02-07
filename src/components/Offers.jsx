@@ -7,7 +7,7 @@ import debounce from 'lodash/debounce';
 import Swal from 'sweetalert2';
 
 // Импортируем данные об областях и районах
-import { regionsData} from '../app/regions/regions';
+import { regionsData } from '../app/regions/regions';
 import { districtsData } from '../app/regions/districts'
 
 export default function Offers() {
@@ -341,6 +341,7 @@ export default function Offers() {
     }, [registrationData.name, accountType]);
 
     // Отправка формы регистрации
+    // Отправка формы регистрации
     const handleRegistrationSubmit = async (e) => {
         e.preventDefault();
 
@@ -471,45 +472,84 @@ export default function Offers() {
                 }
             });
 
+            // Закрываем лоадер
+            Swal.close();
+
             // Успешная регистрация - переходим к шагу 4
             setCurrentStep(4);
 
         } catch (error) {
             console.error('Ошибка при регистрации:', error);
 
-            let errorMessage = 'Ошибка при регистрации. Попробуйте снова.';
-            if (error.response?.data?.message) {
-                errorMessage = error.response.data.message;
-            } else if (error.response?.data?.errors) {
-                const errors = error.response.data.errors;
-                errorMessage = Object.values(errors).flat().join(', ');
+            // Закрываем лоадер
+            Swal.close();
+
+            // Формируем сообщение об ошибке
+            let errorMessage = 'Произошла ошибка при регистрации. Пожалуйста, попробуйте снова.';
+            let errorDetails = [];
+
+            // Обрабатываем различные форматы ошибок от backend
+            if (error.response) {
+                // Если есть response.data.message
+                if (error.response.data?.message) {
+                    errorMessage = error.response.data.message;
+                }
+
+                // Если есть response.data.errors (объект с полями и ошибками)
+                if (error.response.data?.errors) {
+                    const errors = error.response.data.errors;
+
+                    // Формируем список ошибок по полям
+                    Object.keys(errors).forEach(field => {
+                        const fieldErrors = Array.isArray(errors[field]) ? errors[field] : [errors[field]];
+                        fieldErrors.forEach(err => {
+                            errorDetails.push(`<li class="text-left text-slate-300">• ${err}</li>`);
+                        });
+                    });
+                }
+
+                // Если есть response.data.error (одна строка ошибки)
+                if (error.response.data?.error) {
+                    errorMessage = error.response.data.error;
+                }
+
+                // Если есть response.data.detail
+                if (error.response.data?.detail) {
+                    errorMessage = error.response.data.detail;
+                }
+            } else if (error.request) {
+                // Запрос был отправлен, но ответ не получен
+                errorMessage = 'Не удалось связаться с сервером. Проверьте подключение к интернету.';
             }
 
+            // Показываем ошибку
             Swal.fire({
                 icon: 'error',
-                title: 'Ошибка',
+                title: 'Ошибка регистрации',
                 html: `
-                    <div class="space-y-3">
-                        <p class="text-slate-300">${errorMessage}</p>
-                        <button 
-                            onclick="Swal.close()"
-                            class="w-full py-3 px-4 bg-slate-800 hover:bg-slate-700 text-slate-300 rounded-xl font-medium transition-colors text-sm md:text-base"
-                        >
-                            Закрыть
-                        </button>
-                    </div>
-                `,
-                showConfirmButton: false,
+                <div class="space-y-4">
+                    <p class="text-slate-300 text-sm md:text-base">${errorMessage}</p>
+                    ${errorDetails.length > 0 ? `
+                        <div class="bg-slate-800/50 rounded-lg p-3 md:p-4">
+                            <p class="text-slate-400 text-xs md:text-sm mb-2">Детали ошибок:</p>
+                            <ul class="space-y-1 text-xs md:text-sm">
+                                ${errorDetails.join('')}
+                            </ul>
+                        </div>
+                    ` : ''}
+                </div>
+            `,
+                confirmButtonText: 'Понятно',
+                confirmButtonColor: '#3b82f6',
                 background: '#0f172a',
                 color: '#fff',
                 iconColor: '#ef4444',
                 width: '90%',
                 customClass: {
-                    popup: 'swal-popup-responsive max-w-md'
+                    popup: 'swal-popup-responsive max-w-md',
+                    htmlContainer: 'text-left'
                 }
             });
-        } finally {
-            Swal.close();
         }
     };
 
@@ -1266,7 +1306,7 @@ export default function Offers() {
                                             readOnly
                                         />
                                     </div>
-                                 
+
                                 </div>
 
                                 <div>
