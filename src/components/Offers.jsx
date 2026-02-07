@@ -472,16 +472,13 @@ export default function Offers() {
                 }
             });
 
-            // Закрываем лоадер
             Swal.close();
 
-            // Успешная регистрация - переходим к шагу 4
             setCurrentStep(4);
 
         } catch (error) {
             console.error('Ошибка при регистрации:', error);
 
-            // Закрываем лоадер
             Swal.close();
 
             // Формируем сообщение об ошибке
