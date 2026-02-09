@@ -1443,7 +1443,7 @@ export default function Offers() {
                                 <p className="text-slate-300 text-center text-sm md:text-base">
                                     Теперь вы можете войти в свою учетную запись для оформления заявки
                                 </p>
-
+{/* /efwefewfewkfwepfkewfpowekfkwef */}
                                 <button
                                     onClick={() => window.location.href = 'https://usdsoft.uz/login'}
                                     className="w-full flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-medium transition-all duration-300 group text-sm md:text-base"
