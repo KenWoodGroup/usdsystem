@@ -278,7 +278,7 @@ export default function Offers() {
     // Обработка выбора "У меня есть аккаунт"
     const handleHasAccount = () => {
         // Перенаправление на URL для существующих пользователей
-        window.location.href = 'https://app.usderp.uz/login?redirect=offer';
+        window.location.href = 'https://usdsoft.uz/login';
     };
 
     // Обработка выбора "Нет аккаунта"
@@ -1445,7 +1445,7 @@ export default function Offers() {
                                 </p>
 
                                 <button
-                                    onClick={() => window.location.href = 'https://app.usderp.uz/login'}
+                                    onClick={() => window.location.href = 'https://usdsoft.uz/login'}
                                     className="w-full flex items-center justify-center gap-2 md:gap-3 px-6 py-3 md:py-4 bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-700 hover:to-indigo-700 text-white rounded-xl font-medium transition-all duration-300 group text-sm md:text-base"
                                 >
                                     <LogIn className="w-4 h-4 md:w-5 md:h-5" />
