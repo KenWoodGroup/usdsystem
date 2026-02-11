@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image"; 
+import Image from "next/image";
 import { ArrowRight } from "lucide-react";
 import foto from '../../../public/2026-02-03 16.02.49.jpg'
 
@@ -107,14 +107,12 @@ export default function Blog() {
                         data-aos="fade-left"
                     >
                         <Image
-                            src={foto}
+                            src={`https://upr.ru/upload/iblock/d62/1200x600_UPR_Image_AnFi_3.jpg`}
                             alt="ERP система для управления производством"
                             fill
-                            className="object-cover"
+                            className="object-center"
                         />
-                        <div className="absolute inset-0 flex items-center justify-center text-slate-500">
-                            Изображение ERP / Производства
-                        </div>
+
                     </div>
                 </div>
             </div>
