@@ -24,7 +24,7 @@ const Contact = () => {
                             <ContactInfo
                                 icon={<Phone className="text-[#3B82F6]" />}
                                 label="Телефон"
-                                value="+998 90 000 69 90"
+                                value="+998 88 666 33 66"
                                 delay={0}
                             />
                             <ContactInfo
