@@ -26,7 +26,7 @@ export default function Header() {
         { name: "О нас", path: "/about" },
         { name: "Блог", path: "/blog" },
         { name: "USD ERP", path: "/usderp" },
-        { name: "USD CRM", path: "/usdsoft" },
+        { name: "USD консалтинг", path: "/usdkonsult" },
         { name: "USD Market", path: "/usdmarket" },
         { name: "Контакты", path: "/contact" },
     ];
