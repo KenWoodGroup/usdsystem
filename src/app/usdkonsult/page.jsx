@@ -1,13 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { FileText, Ruler, Upload, CheckCircle, AlertCircle, HardHat, Building2, Calculator, FileCheck, User, Phone, ArrowRight, Clock, Shield } from 'lucide-react';
+import { FileText, Ruler, Upload, CheckCircle, AlertCircle, HardHat, Building2, Calculator, FileCheck, User, Phone, ArrowRight, Clock, Shield, Loader } from 'lucide-react';
+import Swal from 'sweetalert2';
 
 const USDKonsult = () => {
-    const [step, setStep] = useState(1); // 1: данные, 2: загрузка документов
+    const [step, setStep] = useState(1);
+    const [loading, setLoading] = useState(false);
     const [userData, setUserData] = useState({
-        name: '',
+        full_name: '',
         phone: '',
+        password: '',
+        note: '',
         agree: false
     });
     const [apzFile, setApzFile] = useState(null);
@@ -15,23 +19,127 @@ const USDKonsult = () => {
     const [uploadProgress, setUploadProgress] = useState({ apz: 0, drawing: 0 });
     const [analysisComplete, setAnalysisComplete] = useState(false);
     const [errors, setErrors] = useState({});
+    const [apiError, setApiError] = useState('');
 
     // Валидация формы
     const validateForm = () => {
         const newErrors = {};
-        if (!userData.name.trim()) {
-            newErrors.name = 'Введите ваше имя';
+        if (!userData.full_name.trim()) {
+            newErrors.full_name = 'Введите ваше имя';
         }
         if (!userData.phone.trim()) {
             newErrors.phone = 'Введите номер телефона';
-        } else if (!/^\+?[0-9\s\-\(\)]{10,}$/.test(userData.phone)) {
-            newErrors.phone = 'Введите корректный номер телефона';
+        } else if (!/^\+998\d{9}$/.test(userData.phone.replace(/\s+/g, ''))) {
+            newErrors.phone = 'Введите корректный номер телефона в формате +998XXXXXXXXX';
+        }
+        if (!userData.password.trim()) {
+            newErrors.password = 'Введите пароль';
+        } else if (userData.password.length < 6) {
+            newErrors.password = 'Пароль должен содержать минимум 6 символов';
         }
         if (!userData.agree) {
             newErrors.agree = 'Необходимо согласие на обработку данных';
         }
         setErrors(newErrors);
         return Object.keys(newErrors).length === 0;
+    };
+
+    // Валидация файлов
+    const validateFiles = () => {
+        const newErrors = {};
+        if (!apzFile) {
+            newErrors.apz = 'Загрузите файл АПЗ';
+        }
+        if (!drawingFile) {
+            newErrors.drawing = 'Загрузите чертежи проекта';
+        }
+
+        // Проверка размера файлов (например, не больше 10MB)
+        const maxSize = 10 * 1024 * 1024; // 10MB
+        if (apzFile && apzFile.size > maxSize) {
+            newErrors.apz = 'Размер файла не должен превышать 10MB';
+        }
+        if (drawingFile && drawingFile.size > maxSize) {
+            newErrors.drawing = 'Размер файла не должен превышать 10MB';
+        }
+
+        setErrors(newErrors);
+        return Object.keys(newErrors).length === 0;
+    };
+
+    // Показать успешное уведомление
+    const showSuccessAlert = () => {
+        Swal.fire({
+            title: 'Успешно отправлено!',
+            html: `
+                <div class="text-left">
+                    <p class="mb-2">Спасибо, ${userData.full_name}!</p>
+                    <p class="mb-2">Ваш запрос принят. Специалист свяжется с вами по телефону</p>
+                    <p class="font-semibold text-indigo-600">${userData.phone}</p>
+                    <p class="mt-4 text-sm text-gray-500">в ближайшее время.</p>
+                </div>
+            `,
+            icon: 'success',
+            confirmButtonText: 'Отлично',
+            confirmButtonColor: '#4f46e5',
+            background: '#1e1b4b',
+            color: '#fff',
+            customClass: {
+                popup: 'rounded-3xl',
+                confirmButton: 'px-8 py-3 rounded-xl font-semibold'
+            }
+        });
+    };
+
+    // Показать ошибку
+    const showErrorAlert = (message) => {
+        Swal.fire({
+            title: 'Ошибка!',
+            text: message || 'Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.',
+            icon: 'error',
+            confirmButtonText: 'Понятно',
+            confirmButtonColor: '#ef4444',
+            background: '#1e1b4b',
+            color: '#fff',
+            customClass: {
+                popup: 'rounded-3xl',
+                confirmButton: 'px-8 py-3 rounded-xl font-semibold'
+            }
+        });
+    };
+
+    // Показать предупреждение о валидации
+    const showValidationAlert = () => {
+        Swal.fire({
+            title: 'Внимание!',
+            text: 'Пожалуйста, заполните все обязательные поля и загрузите файлы.',
+            icon: 'warning',
+            confirmButtonText: 'Понятно',
+            confirmButtonColor: '#f59e0b',
+            background: '#1e1b4b',
+            color: '#fff',
+            customClass: {
+                popup: 'rounded-3xl',
+                confirmButton: 'px-8 py-3 rounded-xl font-semibold'
+            }
+        });
+    };
+
+    // Показать загрузку
+    const showLoadingAlert = () => {
+        Swal.fire({
+            title: 'Отправка данных...',
+            html: 'Пожалуйста, подождите',
+            allowOutsideClick: false,
+            didOpen: () => {
+                Swal.showLoading();
+            },
+            background: '#1e1b4b',
+            color: '#fff',
+            customClass: {
+                popup: 'rounded-3xl'
+            }
+        });
     };
 
     // Обработка отправки формы с данными
@@ -58,15 +166,111 @@ const USDKonsult = () => {
                 // Проверяем, загружены ли оба файла
                 if (apzFile && drawingFile) {
                     setAnalysisComplete(true);
+
+                    // Показываем уведомление о завершении загрузки
+                    Swal.fire({
+                        title: 'Файлы загружены!',
+                        text: 'Все файлы успешно загружены. Теперь вы можете отправить их на анализ.',
+                        icon: 'success',
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        background: '#1e1b4b',
+                        color: '#fff',
+                        customClass: {
+                            popup: 'rounded-xl'
+                        }
+                    });
                 }
             }
         }, 200);
     };
 
+    // Функция для форматирования номера телефона
+    const formatPhoneNumber = (phone) => {
+        // Удаляем все пробелы и дефисы
+        return phone.replace(/[\s\-\(\)]/g, '');
+    };
+
+    // Отправка данных на backend
+    const sendToBackend = async () => {
+        if (!validateFiles()) {
+            showValidationAlert();
+            return;
+        }
+
+        setLoading(true);
+        showLoadingAlert();
+
+        try {
+            const formData = new FormData();
+
+            // Добавляем все поля в FormData
+            formData.append('full_name', userData.full_name);
+            formData.append('phone', formatPhoneNumber(userData.phone));
+            formData.append('password', userData.password);
+            formData.append('note', userData.note || '');
+            formData.append('file1', apzFile);
+            formData.append('file2', drawingFile);
+
+            // Отправка запроса
+            const response = await fetch('https://api.usderp.uz/consulting/api/v1/offers/user', {
+                method: 'POST',
+                body: formData,
+            });
+
+            const data = await response.json();
+
+            if (!response.ok) {
+                throw new Error(data.message || 'Ошибка при отправке данных');
+            }
+
+            // Закрываем загрузку
+            Swal.close();
+
+            // Успешная отправка
+            showSuccessAlert();
+
+            // Сброс формы после успешной отправки
+            resetForm();
+
+        } catch (error) {
+            console.error('Error sending data:', error);
+
+            // Закрываем загрузку
+            Swal.close();
+
+            // Показываем ошибку
+            showErrorAlert(error.message);
+            setApiError(error.message || 'Произошла ошибка при отправке данных. Пожалуйста, попробуйте снова.');
+        } finally {
+            setLoading(false);
+        }
+    };
+
+    // Сброс формы
+    const resetForm = () => {
+        setStep(1);
+        setUserData({
+            full_name: '',
+            phone: '',
+            password: '',
+            note: '',
+            agree: false
+        });
+        setApzFile(null);
+        setDrawingFile(null);
+        setUploadProgress({ apz: 0, drawing: 0 });
+        setAnalysisComplete(false);
+        setErrors({});
+        setApiError('');
+    };
+
     // Финальная отправка
     const handleFinalSubmit = () => {
-        alert(`Спасибо, ${userData.name}! Ваш запрос принят. Специалист свяжется с вами по телефону ${userData.phone} в ближайшее время.`);
-        // Здесь можно добавить реальную отправку данных на сервер
+        sendToBackend();
     };
 
     const ConsultingCard = ({ title, description, icon, type, file, onUpload }) => (
@@ -120,6 +324,9 @@ const USDKonsult = () => {
                     </div>
                 )}
             </div>
+            {errors[type] && (
+                <p className="mt-2 text-sm text-rose-400">{errors[type]}</p>
+            )}
         </div>
     );
 
@@ -160,27 +367,34 @@ const USDKonsult = () => {
                 </p>
             </div>
 
+            {/* Ошибка API */}
+            {apiError && (
+                <div className="max-w-xl mx-auto mb-6 p-4 bg-rose-500/10 border border-rose-500/30 rounded-xl text-rose-400 text-sm">
+                    {apiError}
+                </div>
+            )}
+
             {step === 1 ? (
                 // Шаг 1: Форма с контактными данными
                 <div className="max-w-xl mx-auto" data-aos="fade-up">
                     <form onSubmit={handleUserDataSubmit} className="space-y-6">
-                        {/* Имя */}
+                        {/* Полное имя */}
                         <div>
                             <label className="block text-sm font-medium text-slate-300 mb-2">
-                                Ваше имя <span className="text-rose-400">*</span>
+                                Полное имя <span className="text-rose-400">*</span>
                             </label>
                             <div className="relative">
                                 <User className="absolute left-4 top-1/2 -translate-y-1/2 text-slate-500" size={20} />
                                 <input
                                     type="text"
-                                    value={userData.name}
-                                    onChange={(e) => setUserData({ ...userData, name: e.target.value })}
+                                    value={userData.full_name}
+                                    onChange={(e) => setUserData({ ...userData, full_name: e.target.value })}
                                     placeholder="Иван Петров"
-                                    className={`w-full pl-12 pr-4 py-4 bg-slate-900/50 border ${errors.name ? 'border-rose-500' : 'border-slate-700'} rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-colors`}
+                                    className={`w-full pl-12 pr-4 py-4 bg-slate-900/50 border ${errors.full_name ? 'border-rose-500' : 'border-slate-700'} rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-colors`}
                                 />
                             </div>
-                            {errors.name && (
-                                <p className="mt-2 text-sm text-rose-400">{errors.name}</p>
+                            {errors.full_name && (
+                                <p className="mt-2 text-sm text-rose-400">{errors.full_name}</p>
                             )}
                         </div>
 
@@ -202,6 +416,39 @@ const USDKonsult = () => {
                             {errors.phone && (
                                 <p className="mt-2 text-sm text-rose-400">{errors.phone}</p>
                             )}
+                        </div>
+
+                        {/* Пароль */}
+                        <div>
+                            <label className="block text-sm font-medium text-slate-300 mb-2">
+                                Пароль <span className="text-rose-400">*</span>
+                            </label>
+                            <div className="relative">
+                                <input
+                                    type="password"
+                                    value={userData.password}
+                                    onChange={(e) => setUserData({ ...userData, password: e.target.value })}
+                                    placeholder="Минимум 6 символов"
+                                    className={`w-full px-4 py-4 bg-slate-900/50 border ${errors.password ? 'border-rose-500' : 'border-slate-700'} rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-colors`}
+                                />
+                            </div>
+                            {errors.password && (
+                                <p className="mt-2 text-sm text-rose-400">{errors.password}</p>
+                            )}
+                        </div>
+
+                        {/* Примечание (опционально) */}
+                        <div>
+                            <label className="block text-sm font-medium text-slate-300 mb-2">
+                                Примечание (необязательно)
+                            </label>
+                            <textarea
+                                value={userData.note}
+                                onChange={(e) => setUserData({ ...userData, note: e.target.value })}
+                                placeholder="Дополнительная информация по проекту"
+                                rows="3"
+                                className="w-full px-4 py-4 bg-slate-900/50 border border-slate-700 rounded-2xl text-white placeholder:text-slate-600 focus:outline-none focus:border-indigo-500 transition-colors"
+                            />
                         </div>
 
                         {/* Согласие */}
@@ -342,10 +589,19 @@ const USDKonsult = () => {
                     {apzFile && drawingFile && (
                         <div className="mt-8 text-center" data-aos="fade-up">
                             <button
-                                className="px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg shadow-indigo-600/25"
+                                className={`px-8 py-4 bg-gradient-to-r from-indigo-600 to-purple-600 text-white font-semibold rounded-2xl hover:from-indigo-700 hover:to-purple-700 transition-all duration-300 shadow-lg shadow-indigo-600/25 flex items-center justify-center gap-2 mx-auto ${loading ? 'opacity-50 cursor-not-allowed' : ''
+                                    }`}
                                 onClick={handleFinalSubmit}
+                                disabled={loading}
                             >
-                                Отправить на анализ
+                                {loading ? (
+                                    <>
+                                        <Loader size={20} className="animate-spin" />
+                                        Отправка...
+                                    </>
+                                ) : (
+                                    'Отправить на анализ'
+                                )}
                             </button>
                             <p className="text-sm text-slate-500 mt-4 flex items-center justify-center gap-2">
                                 <Clock size={16} />
