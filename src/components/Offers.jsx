@@ -249,7 +249,7 @@ export default function Offers() {
         });
 
         try {
-            const response = await axios.post('https://api.usderp.uz/crm/api/locations/web', registrationData, {
+            const response = await axios.post('https://api.usderp.uz/broker/api/locations/web', registrationData, {
                 headers: {
                     'Content-Type': 'application/json'
                 }
