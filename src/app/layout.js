@@ -21,7 +21,7 @@ const geistMono = Geist_Mono({
 ========================= */
 export const metadata = {
   title: {
-    default: "USD System | Поиск строительных материалов в Узбекистане",
+    default: "USD System",
     template: "%s | USD System",
   },
   description: "USD System - единая B2B платформа для поиска всех продуктов по выгодным ценам в Узбекистане. ERP для производства и CRM для строительных компаний.",
@@ -45,11 +45,14 @@ export const metadata = {
     locale: "ru_UZ",
     type: "website",
   },
+  icons: {
+    icon: "/favicon.ico",
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ru" suppressHydrationWarning>
+    <html lang="uz" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { Package, Users, BarChart3, ShieldCheck, Zap, Database } from "lucide-react";
 import { useTranslation } from 'react-i18next';
+import Foto from "../../../public/image_2026-03-11_13-34-52.png"
 
 export default function UsdErp() {
     const { t } = useTranslation();
@@ -119,7 +120,7 @@ export default function UsdErp() {
 
                         <div className="relative">
                             <img
-                                src="https://cdn.prod.website-files.com/6863b933f77bf8ca43166aa3/68b69a0a86ae316e2321d9ac_AdobeStock_219924013.jpeg"
+                                src={Foto?.src || Foto}
                                 className="rounded-2xl shadow-2xl"
                                 alt={t("usderp.cta.title")}
                             />

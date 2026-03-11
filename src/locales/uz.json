@@ -4,9 +4,10 @@
     "about": "Biz haqimizda",
     "blog": "Blog",
     "usderp": "USD ERP",
-    "usdkonsult": "USD konsalting",
+    "usdkonsult": "USD Konsalting",
     "usdmarket": "USD Market",
-    "contact": "Kontaktlar"
+    "contact": "Kontaktlar",
+    "logistics": "Logistika"
   },
   "footer": {
     "description": "Biznesingizni yangi bosqichga ko'taradigan innovatsion texnologiyalar va raqamli yechimlar.",
@@ -15,7 +16,7 @@
     "contacts": "Kontaktlar",
     "vacancies": "Vakansiyalar",
     "blog": "Blog",
-    "all_rights_reserved": "© 2024 USD Group. Barcha huquqlar himoyalangan.",
+    "all_rights_reserved": "© 2024 USD system. Barcha huquqlar himoyalangan.",
     "privacy_policy": "Maxfiylik siyosati",
     "terms_of_use": "Foydalanish shartlari"
   },
@@ -26,7 +27,7 @@
       "sale": "Sotuv",
       "construction": "Qurilish",
       "description": "USD System - barcha mahsulotlarni hamyonbop narxlarda topish uchun yagona B2B platforma. Qurilish materiallari (qurilish mollari), ishlab chiqarish uchun ERP tizimi, qurilish kompaniyalari uchun CRM va O'zbekistondagi onlayn-marketpleys.",
-      "start_project": "Loyihani boshlash",
+      "start_project": "Biz bilan bog'laning",
       "about_us": "Biz haqimizda"
     },
     "stats": {
@@ -39,7 +40,7 @@
       "title": "O'zbekistondagi xizmatlarimiz",
       "description": "Qurilish biznesi va materiallar ishlab chiqarishning barcha bosqichlari uchun kompleks yechimlar",
       "usderp_desc": "O'zbekistonda qurilish materiallari ishlab chiqarishni aqlli boshqarish",
-      "usdsoft_desc": "Qurilish kompaniyalari va korxonalari uchun CRM",
+      "usdsoft_desc": "Qurilish obyektlarini qonuniy boshlash uchun hujjatlar tayyorlash.",
       "marketplace_desc": "O'zbekistonda qurilish materiallarini sotish uchun onlayn platforma",
       "logistics_desc": "O'zbekiston bo'ylab qurilish materiallarini yetkazib berishni boshqarish",
       "more": "Batafsil"
@@ -57,6 +58,10 @@
   },
   "about": {
     "title": "Kompaniya haqida",
+    "meta": {
+      "title": "Biz haqimizda | USD System",
+      "description": "USD System haqida ko'proq bilib oling — qurilish sohasi uchun zamonaviy raqamli ekotizim. Bizning missiyamiz, maqsadlarimiz va biznesni avtomatlashtirish yechimlari."
+    },
     "hero": {
       "subtitle": "Kompaniya haqida",
       "title": "Qurilish sanoati uchun\nraqamli ekotizim",

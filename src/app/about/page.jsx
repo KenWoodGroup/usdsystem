@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { Target, Eye, Users2, Rocket } from "lucide-react";
 import { useTranslation } from 'react-i18next';
+import Foto from '../../../public/2026-03-11 13.50.07.jpg'
 
 /* =========================
    SEO META
@@ -11,13 +12,13 @@ const SEO = () => {
     const { t } = useTranslation();
 
     useEffect(() => {
-        document.title = t("about.hero.title");
+        document.title = t("about.meta.title");
 
         const description = document.querySelector('meta[name="description"]');
         if (description) {
             description.setAttribute(
                 "content",
-                t("about.hero.desc1")
+                t("about.meta.description")
             );
         }
 
@@ -25,10 +26,8 @@ const SEO = () => {
         if (keywords) {
             keywords.setAttribute(
                 "content",
-                "USD System, construction platform, ERP CRM construction, building materials marketplace"
             );
         }
-
     }, [t]);
 
     return null;
@@ -54,15 +53,13 @@ export default function AboutPage() {
 
                         <div className="relative" data-aos="fade-right">
                             <img
-                                src="https://media.istockphoto.com/id/480928257/photo/human-hand-holding-the-world.jpg?s=170667a&w=0&k=20&c=1uY6daKPg-BvBqJluSHz6njOrxhEGZ5F5JnT56tWUyk="
+                                src={Foto?.src || Foto}
                                 className="rounded-3xl shadow-2xl relative z-10"
                                 alt={t("about.hero.title")}
                             />
 
                             <div className="absolute -bottom-6 -right-6 w-full h-full border-2 border-blue-500/30 rounded-3xl z-0"></div>
                         </div>
-
-
                         <div data-aos="fade-left">
 
                             <span className="text-blue-500 font-bold uppercase text-sm tracking-widest">

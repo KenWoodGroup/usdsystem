@@ -58,11 +58,7 @@ const Footer = () => {
                                     {t("header.usdmarket")}
                                 </Link>
                             </li>
-                            <li>
-                                <Link href="/" className="hover:text-blue-400 transition-colors">
-                                    {t("home.services.logistics_desc")}
-                                </Link>
-                            </li>
+
                         </ul>
                     </div>
 
@@ -86,8 +82,8 @@ const Footer = () => {
                             </li>
                             <li className="flex items-center space-x-3">
                                 <Mail size={18} className="text-blue-500" />
-                                <a href="mailto:umarkhidirboev@gmail.com">
-                                    umarkhidirboev@gmail.com
+                                <a href="mailto: kenwoodgroup1@gmail.com">
+                                    kenwoodgroup1@gmail.com
                                 </a>                            </li>
                         </ul>
                     </div>
@@ -101,12 +97,6 @@ const Footer = () => {
                 >
                     <p>{t("footer.all_rights_reserved")}</p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
-                        <a href="#" className="hover:text-white transition-colors">
-                            {t("footer.privacy_policy")}
-                        </a>
-                        <a href="#" className="hover:text-white transition-colors">
-                            {t("footer.terms_of_use")}
-                        </a>
                     </div>
                 </div>
             </div>

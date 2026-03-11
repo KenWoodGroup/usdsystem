@@ -94,7 +94,7 @@ const Contact = () => {
 
                         <div className="space-y-8">
                             <ContactInfo icon={<Phone className="text-[#3B82F6]" />} label={t("contact.info.phone")} value="+998 88 666 33 66" delay={0} t={t} />
-                            <ContactInfo icon={<Mail className="text-[#3B82F6]" />} label={t("contact.info.email")} value="umarkhidirboev@gmail.com" delay={100} t={t} />
+                            <ContactInfo icon={<Mail className="text-[#3B82F6]" />} label={t("contact.info.email")} value=" kenwoodgroup1@gmail.com" delay={100} t={t} />
                             <ContactInfo icon={<MapPin className="text-[#3B82F6]" />} label={t("contact.info.address")} value={t("contact.info.address_value")} delay={200} t={t} />
                         </div>
 

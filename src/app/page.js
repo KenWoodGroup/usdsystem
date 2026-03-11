@@ -4,6 +4,7 @@ import React from 'react';
 import Link from 'next/link';
 import { ArrowRight, Cpu, Building2, Truck, ShoppingCart, CheckCircle2 } from 'lucide-react';
 import { useTranslation } from 'react-i18next';
+import Foto from '../../public/2026-03-11 13.46.29.jpg'
 
 const Home = () => {
   const { t } = useTranslation();
@@ -40,7 +41,6 @@ const Home = () => {
                 </span>
               ))}
             </div>
-
             <p
               className="text-slate-400 max-w-2xl mx-auto text-lg mb-6"
               data-aos="fade-up"
@@ -107,7 +107,7 @@ const Home = () => {
             <div className="grid md:grid-cols-2 gap-12">
               <ServiceCard
                 icon={<Cpu size={32} className="text-blue-400" />}
-                title="USD ERP"
+                title={t('header.usderp')}
                 description={t("home.services.usderp_desc")}
                 link="/usderp"
                 delay={0}
@@ -115,15 +115,15 @@ const Home = () => {
               />
               <ServiceCard
                 icon={<Building2 size={32} className="text-teal-400" />}
-                title="USD SOFT"
+                title={t('header.usdkonsult')}
                 description={t("home.services.usdsoft_desc")}
-                link="/about"
+                link="/usdkonsult"
                 delay={150}
                 t={t}
               />
               <ServiceCard
                 icon={<ShoppingCart size={32} className="text-orange-400" />}
-                title="Marketplace"
+                title={t('header.usdmarket')}
                 description={t("home.services.marketplace_desc")}
                 link="/usdmarket"
                 delay={300}
@@ -131,7 +131,7 @@ const Home = () => {
               />
               <ServiceCard
                 icon={<Truck size={32} className="text-purple-400" />}
-                title="Логистика"
+                title={t('header.logistics')}
                 description={t("home.services.logistics_desc")}
                 link="/"
                 delay={450}
@@ -168,7 +168,7 @@ const Home = () => {
 
             <div className="lg:w-1/2 relative" data-aos="fade-left">
               <img
-                src="https://s.glavbukh.ru/images/preview/1200x800/48b6b509cee037071bd39322dd6d6afe.webp"
+                src={Foto?.src || Foto}
                 alt="USD System Dashboard"
                 className="rounded-2xl shadow-2xl border border-slate-700 grayscale hover:grayscale-0 transition-all duration-700 transform hover:scale-[1.02]"
                 loading="lazy"

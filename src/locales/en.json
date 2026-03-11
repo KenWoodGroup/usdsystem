@@ -6,7 +6,8 @@
     "usderp": "USD ERP",
     "usdkonsult": "USD Consulting",
     "usdmarket": "USD Market",
-    "contact": "Contact"
+    "contact": "Contact",
+    "logistics": "logistics"
   },
   "footer": {
     "description": "Innovative technologies and digital solutions that take your business to the next level.",
@@ -15,7 +16,7 @@
     "contacts": "Contacts",
     "vacancies": "Vacancies",
     "blog": "Blog",
-    "all_rights_reserved": "© 2024 USD Group. All rights reserved.",
+    "all_rights_reserved": "© 2024 USD system. All rights reserved.",
     "privacy_policy": "Privacy Policy",
     "terms_of_use": "Terms of Use"
   },
@@ -26,7 +27,7 @@
       "sale": "Sale",
       "construction": "Construction",
       "description": "USD System - a unified B2B platform for finding all products at competitive prices. Construction materials, ERP system for production, CRM for construction companies, and an online marketplace in Uzbekistan.",
-      "start_project": "Start Project",
+      "start_project": "Contact Us",
       "about_us": "About Us"
     },
     "stats": {
@@ -39,7 +40,7 @@
       "title": "Our Services in Uzbekistan",
       "description": "Integrated solutions for all stages of construction business and material production",
       "usderp_desc": "Smart management of construction materials production in Uzbekistan",
-      "usdsoft_desc": "CRM for construction companies and enterprises",
+      "usdsoft_desc": "Document preparation for legal construction starts.",
       "marketplace_desc": "Online platform for selling construction materials in Uzbekistan",
       "logistics_desc": "Management of construction materials delivery across Uzbekistan",
       "more": "More Details"
@@ -57,6 +58,10 @@
   },
   "about": {
     "title": "About Company",
+    "meta": {
+      "title": "About Us | USD System",
+      "description": "Learn more about USD System — a modern digital ecosystem for the construction industry. Our mission, vision, and innovative business automation solutions."
+    },
     "hero": {
       "subtitle": "About Company",
       "title": "A Digital Ecosystem\nfor the Construction Industry",
@@ -141,6 +146,10 @@
     }
   },
   "usderp": {
+    "meta": {
+      "title": "USD ERP — Manage Business Processes in a Unified System",
+      "description": "USD ERP is a modern management system that allows you to control company finances, supplies, warehouse, orders, and internal operations on a single platform."
+    },
     "hero": {
       "subtitle": "Business Systems",
       "title": "USD ERP Platform",
@@ -155,9 +164,17 @@
         "title": "HR & Employees",
         "desc": "Payroll, KPI, and working time tracking."
       },
+      "orders": {
+        "title": "Order Management",
+        "desc": "Create and track orders, monitor statuses and the delivery process."
+      },
       "finance": {
         "title": "Financial Accounting",
         "desc": "Income and expenses by project."
+      },
+      "suppliers": {
+        "title": "Supplier Management",
+        "desc": "Supplier database, prices, contracts, and delivery control."
       },
       "analytics": {
         "title": "Project Analytics",
