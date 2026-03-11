@@ -1,97 +1,162 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect } from 'react';
+import { Package, Users, BarChart3, ShieldCheck, Zap, Database } from "lucide-react";
+import { useTranslation } from 'react-i18next';
 
-import { Warehouse, Users, Receipt, PieChart, ShieldCheck, Zap } from 'lucide-react';
+export default function UsdErp() {
+    const { t } = useTranslation();
 
-export default function USDERP() {
-    const features = [
-        { icon: <Warehouse />, title: "Управление складом", desc: "Контроль остатков в реальном времени." },
-        { icon: <Users />, title: "HR и сотрудники", desc: "Учет зарплат, KPI и рабочего времени." },
-        { icon: <Receipt />, title: "Финансовый учет", desc: "Доходы и расходы по проектам." },
-        { icon: <PieChart />, title: "Аналитика проектов", desc: "Диаграммы и отчеты." },
-        { icon: <ShieldCheck />, title: "Безопасность", desc: "Защищенное облачное хранение." },
-        { icon: <Zap />, title: "Интеграция", desc: "Подключение за считанные дни." }
-    ];
+    /* =========================
+       SEO META
+    ========================= */
+    useEffect(() => {
+        document.title = t("usderp.meta.title");
+
+        const description = document.querySelector('meta[name="description"]');
+        if (description) {
+            description.setAttribute("content", t("usderp.meta.description"));
+        }
+    }, [t]);
 
     return (
         <div className="pt-32 pb-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
 
-                {/* Заголовок */}
-                <div
-                    className="text-center mb-20 overflow-hidden" // добавили overflow-hidden
-                    data-aos="fade-up"
-                >
-                    <span className="text-blue-500 font-bold tracking-widest uppercase text-sm">
-                        Системы для бизнеса
+                {/* =========================
+                   HERO
+                ========================= */}
+                <div className="text-center mb-20" data-aos="fade-down">
+
+                    <span className="text-blue-500 font-bold uppercase text-sm tracking-widest">
+                        {t("usderp.hero.subtitle")}
                     </span>
-                    <h1 className="relative text-4xl lg:text-6xl font-bold mt-4 mb-6 text-white">
-                        Платформа USD ERP
+
+                    <h1 className="text-4xl lg:text-5xl font-bold mt-4 mb-6 text-white">
+                        {t("usderp.hero.title")}
                     </h1>
-                    <p className="text-slate-400 max-w-3xl mx-auto text-lg">
-                        Все процессы строительной компании — в одной системе.
+
+                    <p className="text-slate-400 text-xl max-w-2xl mx-auto leading-relaxed">
+                        {t("usderp.hero.desc")}
                     </p>
+
                 </div>
 
-                {/* Карточки */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 mb-24">
-                    {features.map((f, i) => (
-                        <div
-                            key={i}
-                            data-aos="fade-up"
-                            data-aos-delay={i * 100}
-                            className="p-8 bg-slate-900 border border-slate-800 rounded-2xl
-                                       transition-all duration-300 hover:-translate-y-2
-                                       hover:border-blue-500/50 hover:shadow-xl"
-                        >
-                            <div className="w-12 h-12 bg-blue-500/10 text-blue-500 rounded-lg flex items-center justify-center mb-6">
-                                {f.icon}
-                            </div>
-                            <h3 className="text-xl font-bold mb-3 text-white">
-                                {f.title}
-                            </h3>
-                            <p className="text-slate-400 text-sm">
-                                {f.desc}
-                            </p>
-                        </div>
-                    ))}
+
+                {/* =========================
+                   FEATURES
+                ========================= */}
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                    <FeatureCard
+                        icon={<Database className="text-purple-500" size={32} />}
+                        title={t("usderp.features.finance.title")}
+                        desc={t("usderp.features.finance.desc")}
+                        delay={0}
+                    />
+
+                    <FeatureCard
+                        icon={<Package className="text-blue-500" size={32} />}
+                        title={t("usderp.features.orders.title")}
+                        desc={t("usderp.features.orders.desc")}
+                        delay={100}
+                    />
+
+                    <FeatureCard
+                        icon={<Users className="text-teal-500" size={32} />}
+                        title={t("usderp.features.warehouse.title")}
+                        desc={t("usderp.features.warehouse.desc")}
+                        delay={200}
+                    />
+
+                    <FeatureCard
+                        icon={<ShieldCheck className="text-emerald-500" size={32} />}
+                        title={t("usderp.features.suppliers.title")}
+                        desc={t("usderp.features.suppliers.desc")}
+                        delay={300}
+                    />
+
+                    <FeatureCard
+                        icon={<BarChart3 className="text-orange-500" size={32} />}
+                        title={t("usderp.features.analytics.title")}
+                        desc={t("usderp.features.analytics.desc")}
+                        delay={400}
+                    />
+
+                    <FeatureCard
+                        icon={<Zap className="text-yellow-500" size={32} />}
+                        title={t("usderp.features.integration.title")}
+                        desc={t("usderp.features.integration.desc")}
+                        delay={500}
+                    />
+
                 </div>
 
-                {/* CTA */}
-                <div
-                    className="bg-gradient-to-r from-blue-900/40 to-indigo-900/40 rounded-[3rem] p-12 lg:p-20 overflow-hidden"
-                    data-aos="zoom-in"
-                >
-                    <div className="flex flex-col lg:flex-row items-center gap-12">
-                        <div
-                            className="lg:w-1/2 overflow-hidden" // добавили overflow-hidden для анимации текста
-                            data-aos="fade-right"
-                        >
-                            <h2 className="text-3xl lg:text-4xl font-bold mb-6 text-white">
-                                Цифровизация склада
+
+                {/* =========================
+                   CTA
+                ========================= */}
+                <div className="mt-32 p-12 bg-blue-600/10 rounded-3xl border border-blue-500/20" data-aos="zoom-in">
+
+                    <div className="grid lg:grid-cols-2 gap-12 items-center">
+
+                        <div>
+
+                            <h2 className="text-3xl font-bold mb-6 text-white">
+                                {t("usderp.cta.title")}
                             </h2>
-                            <p className="text-slate-300 mb-8">
-                                Контроль материалов, уведомления и аналитика в реальном времени.
+
+                            <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                                {t("usderp.cta.desc")}
                             </p>
-                            <button className="px-8 py-4 bg-white text-slate-900 rounded-full font-bold transition hover:scale-105">
-                                Просмотр демо
-                            </button>
+                            <a href="https://usderp.uz/" target="_blank" rel="noopener noreferrer">
+                                <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition">
+                                    {t("usderp.cta.button")}
+                                </button>
+                            </a>
+
                         </div>
 
-                        <div
-                            className="lg:w-1/2 overflow-hidden" // добавили overflow-hidden для картинки
-                            data-aos="fade-left"
-                        >
+                        <div className="relative">
                             <img
                                 src="https://cdn.prod.website-files.com/6863b933f77bf8ca43166aa3/68b69a0a86ae316e2321d9ac_AdobeStock_219924013.jpeg"
-                                className="rounded-2xl shadow-2xl transition-transform duration-500 hover:scale-105"
-                                alt="ERP Dashboard"
+                                className="rounded-2xl shadow-2xl"
+                                alt={t("usderp.cta.title")}
                             />
                         </div>
+
                     </div>
+
                 </div>
+
             </div>
         </div>
     );
 }
+
+
+/* =========================
+   FEATURE CARD
+========================= */
+
+const FeatureCard = ({ icon, title, desc, delay }) => (
+    <div
+        className="bg-[#0b1121] p-8 rounded-2xl border border-slate-800 hover:border-blue-500/50 transition-all group"
+        data-aos="fade-up"
+        data-aos-delay={delay}
+    >
+
+        <div className="p-3 bg-slate-900 rounded-xl inline-block mb-6 group-hover:scale-110 transition-transform">
+            {icon}
+        </div>
+
+        <h3 className="text-xl font-bold mb-4 text-white">
+            {title}
+        </h3>
+
+        <p className="text-slate-400 group-hover:text-slate-300 transition-colors leading-relaxed">
+            {desc}
+        </p>
+
+    </div>
+);

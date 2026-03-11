@@ -1,0 +1,365 @@
+{
+  "header": {
+    "home": "Home",
+    "about": "About",
+    "blog": "Blog",
+    "usderp": "USD ERP",
+    "usdkonsult": "USD Consulting",
+    "usdmarket": "USD Market",
+    "contact": "Contact"
+  },
+  "footer": {
+    "description": "Innovative technologies and digital solutions that take your business to the next level.",
+    "services": "Services",
+    "company": "Company",
+    "contacts": "Contacts",
+    "vacancies": "Vacancies",
+    "blog": "Blog",
+    "all_rights_reserved": "© 2024 USD Group. All rights reserved.",
+    "privacy_policy": "Privacy Policy",
+    "terms_of_use": "Terms of Use"
+  },
+  "home": {
+    "hero": {
+      "all_on_platform": "All on a single platform",
+      "production": "Production",
+      "sale": "Sale",
+      "construction": "Construction",
+      "description": "USD System - a unified B2B platform for finding all products at competitive prices. Construction materials, ERP system for production, CRM for construction companies, and an online marketplace in Uzbekistan.",
+      "start_project": "Start Project",
+      "about_us": "About Us"
+    },
+    "stats": {
+      "orders": "Successful Orders",
+      "materials": "Materials",
+      "sellers": "Sellers",
+      "companies": "Companies"
+    },
+    "services": {
+      "title": "Our Services in Uzbekistan",
+      "description": "Integrated solutions for all stages of construction business and material production",
+      "usderp_desc": "Smart management of construction materials production in Uzbekistan",
+      "usdsoft_desc": "CRM for construction companies and enterprises",
+      "marketplace_desc": "Online platform for selling construction materials in Uzbekistan",
+      "logistics_desc": "Management of construction materials delivery across Uzbekistan",
+      "more": "More Details"
+    },
+    "integration": {
+      "title": "Marketplace & CRM Integration for Construction Business",
+      "description": "All construction and sales processes are combined into a single USD System ecosystem",
+      "items": [
+        "Inventory control of construction materials",
+        "HR system for construction companies",
+        "Construction project finances",
+        "Logistics across Uzbekistan"
+      ]
+    }
+  },
+  "about": {
+    "title": "About Company",
+    "hero": {
+      "subtitle": "About Company",
+      "title": "A Digital Ecosystem\nfor the Construction Industry",
+      "desc1": "USD SYSTEM is a modern digital platform designed to simplify and digitize the construction materials market.",
+      "desc2": "The system connects manufacturers, suppliers, and construction companies within a single ecosystem. With solutions such as USD Market, USD CRM, USD ERP, and USD HR, businesses can easily discover materials, compare suppliers, manage orders, and streamline their internal operations."
+    },
+    "cards": {
+      "mission": {
+        "title": "Mission",
+        "desc": "To accelerate and reduce the cost of construction material supplies through digitalization."
+      },
+      "vision": {
+        "title": "Vision",
+        "desc": "A digital ecosystem for construction supplies: transparency, efficiency, and leadership in supply chain management."
+      },
+      "team": {
+        "title": "Platform",
+        "desc": "Modern digital solutions including USD Market, CRM, ERP, and HR."
+      },
+      "result": {
+        "title": "Result",
+        "desc": "A transparent and efficient digital ecosystem for construction businesses."
+      }
+    }
+  },
+  "blog": {
+    "hero": {
+      "title": "Systemic Production Management — A Requirement of the Times",
+      "desc1": "In modern production, the key to success is accuracy and speed. Working with outdated schemes, in Excel or on paper, leads to resource waste and errors. An ERP system combines all company processes into a single digital space."
+    },
+    "list": {
+      "item1": {
+        "title": "Raw Materials Control:",
+        "desc": "actual stock balances in real-time."
+      },
+      "item2": {
+        "title": "Time Savings:",
+        "desc": "automation of production stages."
+      },
+      "item3": {
+        "title": "Cost Reduction:",
+        "desc": "elimination of overspending and hidden losses."
+      },
+      "item4": {
+        "title": "Analytics:",
+        "desc": "ready-made reports for management decisions."
+      }
+    },
+    "footer": {
+      "text": "Today, systematization of production is not an advantage, but a mandatory condition for growth and competitiveness."
+    },
+    "buttons": {
+      "erp": "Implement ERP",
+      "more": "More Details"
+    }
+  },
+  "contact": {
+    "title": "Contact Us",
+    "description": "Have questions about a project or want to collaborate? Write to us or call.",
+    "info": {
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "address_value": "700002, Tashkent, Tashkent Region, Uzbekistan"
+    },
+    "form": {
+      "title": "Send a Message",
+      "name": "Your Name",
+      "phone": "Phone",
+      "subject": "Subject",
+      "message": "Message",
+      "send": "Send",
+      "placeholder_name": "John Doe",
+      "placeholder_phone": "+998 90 ...",
+      "placeholder_message": "Tell us more about your project...",
+      "subjects": {
+        "erp": "ERP",
+        "market": "Market",
+        "consulting": "Consulting",
+        "other": "Other"
+      }
+    }
+  },
+  "usderp": {
+    "hero": {
+      "subtitle": "Business Systems",
+      "title": "USD ERP Platform",
+      "desc": "All construction company processes in one system."
+    },
+    "features": {
+      "warehouse": {
+        "title": "Warehouse Management",
+        "desc": "Real-time stock control."
+      },
+      "hr": {
+        "title": "HR & Employees",
+        "desc": "Payroll, KPI, and working time tracking."
+      },
+      "finance": {
+        "title": "Financial Accounting",
+        "desc": "Income and expenses by project."
+      },
+      "analytics": {
+        "title": "Project Analytics",
+        "desc": "Charts and reports."
+      },
+      "safety": {
+        "title": "Security",
+        "desc": "Secure cloud storage."
+      },
+      "integration": {
+        "title": "Integration",
+        "desc": "Connection in just a few days."
+      }
+    },
+    "cta": {
+      "title": "Warehouse Digitalization",
+      "desc": "Material control, notifications, and real-time analytics.",
+      "button": "View Demo"
+    }
+  },
+  "usdsoft": {
+    "hero": {
+      "title": "Automate Your",
+      "decoration": "Business",
+      "desc": "We don't just write code, we solve problems. We analyze your business processes and create the most effective digital solutions."
+    },
+    "tags": {
+      "production": "Production Systematization",
+      "cloud": "Cloud Solutions"
+    },
+    "tech": {
+      "title": "Tech Stack"
+    }
+  },
+  "usdmarket": {
+    "meta": {
+      "title": "USD Market — Digital marketplace for construction materials",
+      "description": "USD Market is a digital marketplace that connects construction material manufacturers, suppliers, and construction companies on a single platform."
+    },
+    "hero": {
+      "title": "Find construction materials quickly and easily",
+      "desc": "With USD Market, discover construction materials from hundreds of manufacturers and suppliers, compare prices, and place orders within minutes.",
+      "cta1": "Login",
+      "cta2": "Register"
+    },
+    "problem": {
+      "title": "Challenges in the construction market",
+      "p1": "Finding materials takes a lot of time",
+      "p2": "Difficult price comparison",
+      "p3": "Lack of clear product availability",
+      "p4": "Unclear delivery processes",
+      "p5": "Suppliers are not centralized on one platform"
+    },
+    "solution": {
+      "title": "How USD Market helps",
+      "desc": "USD Market digitizes construction material trading and connects all market participants on a single platform.",
+      "s1": "Quickly find materials",
+      "s2": "Compare prices in one place",
+      "s3": "Work with trusted suppliers",
+      "s4": "Place orders faster"
+    },
+    "features": {
+      "title": "Platform Features",
+      "catalog": {
+        "title": "Product Catalog",
+        "desc": "Thousands of construction materials with category-based search and detailed product information."
+      },
+      "prices": {
+        "title": "Price Comparison",
+        "desc": "Prices from multiple suppliers and the ability to choose the best offers."
+      },
+      "orders": {
+        "title": "Order System",
+        "desc": "Quick order creation and order status tracking."
+      },
+      "suppliers": {
+        "title": "Supplier Network",
+        "desc": "Verified manufacturers, supplier profiles, and direct communication."
+      },
+      "delivery": {
+        "title": "Delivery Monitoring",
+        "desc": "Full control over the delivery process."
+      },
+      "analytics": {
+        "title": "Analytics and Insights",
+        "desc": "High-demand products, price analytics, and sales insights."
+      }
+    }
+  },
+  "usdconsulting": {
+    "meta": {
+      "title": "USD Consulting – Construction Document Preparation & Certification",
+      "description": "USD Consulting helps construction companies prepare all necessary documents for legally starting projects and obtaining official approvals efficiently."
+    },
+    "hero": {
+      "h1": "Fast and Legal Construction Document Preparation",
+      "desc": "USD Consulting provides practical support to construction companies in preparing all necessary documents for legally starting construction projects. Through the platform, companies can prepare documents correctly and efficiently, obtain official approvals and certificates, and help prevent illegal construction."
+    },
+    "features": {
+      "documentation": {
+        "title": "Document Preparation",
+        "desc": "Prepare all necessary construction documents correctly."
+      },
+      "certification": {
+        "title": "Certification",
+        "desc": "Obtain official approvals and certificates."
+      },
+      "legal": {
+        "title": "Legal Support",
+        "desc": "Prevent illegal construction."
+      },
+      "efficiency": {
+        "title": "Fast & Efficient",
+        "desc": "Prepare documents quickly and accurately."
+      }
+    },
+    "cta": {
+      "login": "Login",
+      "register": "Register"
+    }
+  },
+  "offers": {
+    "title": "Apply for Products",
+    "subtitle": "To apply, you must have an account in the system",
+    "steps": {
+      "account": "Account",
+      "registration": "Registration"
+    },
+    "step1": {
+      "title": "Do you have an account?",
+      "desc": "To apply, you need an account in the system",
+      "has_account": "I have an account",
+      "has_account_desc": "Log in to an existing account to apply",
+      "no_account": "Create account",
+      "no_account_desc": "Register as a new client to work with us"
+    },
+    "step2": {
+      "title": "Account Registration",
+      "desc": "Fill in the details to create a new account",
+      "type": "Account Type",
+      "types": {
+        "company": {
+          "title": "Company",
+          "desc": "Construction company"
+        },
+        "shop": {
+          "title": "Shop",
+          "desc": "Retail outlet"
+        },
+        "builder": {
+          "title": "Builder",
+          "desc": "Private specialist"
+        }
+      }
+    },
+    "form": {
+      "company_name": "Company Name *",
+      "shop_name": "Shop Name *",
+      "builder_name": "Specialist Name *",
+      "placeholder_company": "Example: BuildTech",
+      "placeholder_shop": "Example: BuildMarket",
+      "placeholder_builder": "Example: John Doe",
+      "contact_person": "Contact Person Full Name *",
+      "phone": "Phone Number *",
+      "region": "Region *",
+      "district": "District *",
+      "address": "Address (street, house)",
+      "address_placeholder": "Region and district will be added automatically",
+      "username": "Username *",
+      "password": "Password *",
+      "back": "Back",
+      "submit": "Register"
+    },
+    "step3": {
+      "title": "Registration Successful!",
+      "desc": "Your account has been successfully created",
+      "username": "Username",
+      "password": "Password",
+      "login_button": "Log in to System",
+      "edit_data": "Return to data editing"
+    },
+    "swal": {
+      "warning": "Attention",
+      "ok": "OK",
+      "loading": "Registration...",
+      "wait": "Please wait",
+      "error_title": "Registration Error",
+      "error_desc": "An error occurred during registration. Please try again.",
+      "error_details": "Error Details:",
+      "understand": "I understand",
+      "validate_name": "Please enter the company/shop name",
+      "validate_full_name": "Please enter the contact person's full name",
+      "validate_phone": "Please enter the phone number",
+      "validate_username": "Please enter the username",
+      "validate_password": "Password must contain at least 6 symbols",
+      "validate_region": "Please select a region and district"
+    }
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "Page Not Found",
+    "description": "Oops! It seems this page doesn't exist. It might have been removed or the link is incorrect.",
+    "back_home": "Return to Home"
+  }
+}

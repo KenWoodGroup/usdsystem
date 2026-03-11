@@ -8,7 +8,12 @@ import {
     Phone,
     MapPin,
 } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import Logo from "../../public/Logo.png";
+
 const Footer = () => {
+    const { t } = useTranslation();
+
     return (
         <footer
             className="bg-[#0F172A] border-t border-[#1E293B] pt-16 pb-8"
@@ -19,12 +24,10 @@ const Footer = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-12">
                     {/* Brand */}
                     <div data-aos="fade-up" data-aos-delay="0">
-                        <span className="text-2xl font-bold tracking-tighter text-white mb-6 block">
-                            USD<span className="text-blue-500">SYSTEM</span>
-                        </span>
+                        <img className="w-[60px]" src={Logo.src || Logo}
+                            alt="" />
                         <p className="text-slate-400 text-sm leading-relaxed">
-                            Инновационные технологии и цифровые решения, которые поднимают ваш
-                            бизнес на новый уровень.
+                            {t("footer.description")}
                         </p>
                         <div className="flex space-x-4 mt-6">
                             <a href="/offers" className="text-slate-300 hover:text-white transition-colors">
@@ -35,16 +38,16 @@ const Footer = () => {
 
                     {/* Services */}
                     <div data-aos="fade-up" data-aos-delay="150">
-                        <h4 className="text-white font-semibold mb-6">Услуги</h4>
+                        <h4 className="text-white font-semibold mb-6">{t("footer.services")}</h4>
                         <ul className="space-y-4 text-sm text-slate-400">
                             <li>
                                 <Link href="/usderp" className="hover:text-blue-400 transition-colors">
-                                    USD ERP – Строительный CRM
+                                    {t("header.usderp")}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/usdsoft" className="hover:text-blue-400 transition-colors">
-                                    USD Soft – Автоматизация
+                                    {t("header.usdkonsult")}
                                 </Link>
                             </li>
                             <li>
@@ -52,12 +55,12 @@ const Footer = () => {
                                     href="/usdfinance"
                                     className="hover:text-blue-400 transition-colors"
                                 >
-                                    USD Finance – Marketplace
+                                    {t("header.usdmarket")}
                                 </Link>
                             </li>
                             <li>
                                 <Link href="/" className="hover:text-blue-400 transition-colors">
-                                    Логистические услуги
+                                    {t("home.services.logistics_desc")}
                                 </Link>
                             </li>
                         </ul>
@@ -65,42 +68,16 @@ const Footer = () => {
 
                     {/* Company */}
                     <div data-aos="fade-up" data-aos-delay="300">
-                        <h4 className="text-white font-semibold mb-6">Компания</h4>
-                        <ul className="space-y-4 text-sm text-slate-400">
-                            <li>
-                                <Link href="/about" className="hover:text-blue-400 transition-colors">
-                                    О нас
-                                </Link>
-                            </li>
-                            <li>
-                                <Link
-                                    href="/contact"
-                                    className="hover:text-blue-400 transition-colors"
-                                >
-                                    Контакты
-                                </Link>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
-                                    Вакансии
-                                </a>
-                            </li>
-                            <li>
-                                <a href="#" className="hover:text-blue-400 transition-colors">
-                                    Блог
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
 
+                    </div>
                     {/* Contact */}
                     <div data-aos="fade-up" data-aos-delay="450">
-                        <h4 className="text-white font-semibold mb-6">Контакты</h4>
+                        <h4 className="text-white font-semibold mb-6">{t("footer.contacts")}</h4>
                         <ul className="space-y-4 text-sm text-slate-400">
                             <li className="flex items-start space-x-3">
                                 <MapPin size={18} className="text-blue-500 mt-0.5" />
                                 <span>
-                                    700002, Tashkent, Tashkent Region, Узбекистан
+                                    700002, Tashkent, Tashkent Region, {t("contact.info.address")}
                                 </span>
                             </li>
                             <li className="flex items-center space-x-3">
@@ -122,13 +99,13 @@ const Footer = () => {
                     data-aos="fade-up"
                     data-aos-delay="600"
                 >
-                    <p>© 2024 USD Group. Все права защищены.</p>
+                    <p>{t("footer.all_rights_reserved")}</p>
                     <div className="flex space-x-6 mt-4 md:mt-0">
                         <a href="#" className="hover:text-white transition-colors">
-                            Политика конфиденциальности
+                            {t("footer.privacy_policy")}
                         </a>
                         <a href="#" className="hover:text-white transition-colors">
-                            Условия использования
+                            {t("footer.terms_of_use")}
                         </a>
                     </div>
                 </div>

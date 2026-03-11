@@ -3,16 +3,72 @@
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { Menu, X, ChevronRight } from "lucide-react";
+import { Menu, X, ChevronRight, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next";
+import Logo from "../../public/Logo.png";
 
 import AOS from "aos";
 import "aos/dist/aos.css";
 
-export default function Header() {
-    const pathname = usePathname();
+const LanguageSwitcher = () => {
+    const { i18n } = useTranslation();
     const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
 
     useEffect(() => {
+        setMounted(true);
+    }, []);
+
+    const languages = [
+        { code: 'ru', name: 'RU' },
+        { code: 'en', name: 'EN' },
+        { code: 'uz', name: 'UZ' }
+    ];
+
+    const currentLanguage = languages.find(lang => lang.code === i18n.language) || languages[0];
+
+    return (
+        <div className="relative">
+            <button
+                onClick={() => setIsOpen(!isOpen)}
+                className="flex items-center gap-1.5 px-3 py-2 text-sm font-medium text-slate-300 hover:text-white transition-colors"
+                aria-label="Change language"
+            >
+                <Globe size={16} />
+                <span>{mounted ? currentLanguage.name : languages[0].name}</span>
+            </button>
+
+            {isOpen && (
+                <div className="absolute right-0 mt-2 w-24 rounded-xl bg-slate-900 border border-slate-800 shadow-xl overflow-hidden z-50">
+                    {languages.map((lang) => (
+                        <button
+                            key={lang.code}
+                            onClick={() => {
+                                i18n.changeLanguage(lang.code);
+                                setIsOpen(false);
+                            }}
+                            className={`w-full px-4 py-2 text-sm text-left transition-colors ${i18n.language === lang.code
+                                ? "bg-blue-600 text-white"
+                                : "text-slate-300 hover:bg-slate-800"
+                                }`}
+                        >
+                            {lang.name}
+                        </button>
+                    ))}
+                </div>
+            )}
+        </div>
+    );
+};
+
+export default function Header() {
+    const { t } = useTranslation();
+    const pathname = usePathname();
+    const [isOpen, setIsOpen] = useState(false);
+    const [mounted, setMounted] = useState(false);
+
+    useEffect(() => {
+        setMounted(true);
         AOS.init({
             duration: 700,
             easing: "ease-out-cubic",
@@ -22,13 +78,12 @@ export default function Header() {
     }, []);
 
     const navLinks = [
-        { name: "Главная", path: "/" },
-        { name: "О нас", path: "/about" },
-        { name: "Блог", path: "/blog" },
-        { name: "USD ERP", path: "/usderp" },
-        { name: "USD консалтинг", path: "/usdkonsult" },
-        { name: "USD Market", path: "/usdmarket" },
-        { name: "Контакты", path: "/contact" },
+        { name: t("header.home"), path: "/" },
+        { name: t("header.about"), path: "/about" },
+        { name: t("header.usderp"), path: "/usderp" },
+        { name: t("header.usdkonsult"), path: "/usdkonsult" },
+        { name: t("header.usdmarket"), path: "/usdmarket" },
+        { name: t("header.contact"), path: "/contact" },
     ];
 
     const isActive = (path) => pathname === path;
@@ -41,17 +96,19 @@ export default function Header() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-20">
                     {/* Логотип */}
-                    <div className="flex-shrink-0" data-aos="fade-right">
+                    <div className="shrink-0" data-aos="fade-right">
                         <Link href="/">
-                            <span className="text-2xl font-bold tracking-tighter text-white">
-                                USD<span className="text-blue-500">SYSTEM</span>
-                            </span>
+                            <img
+                                src={Logo.src || Logo}
+                                alt="Logo"
+                                className="w-[50px]"
+                            />
                         </Link>
                     </div>
 
                     {/* Desktop меню */}
                     <div className="hidden md:block">
-                        <div className="ml-10 flex items-baseline space-x-8">
+                        <div className="ml-10 flex items-center space-x-4 lg:space-x-8">
                             {navLinks.map((link, i) => (
                                 <Link key={link.name} href={link.path}>
                                     <span
@@ -62,15 +119,17 @@ export default function Header() {
                                             : "text-slate-300 hover:text-white"
                                             }`}
                                     >
-                                        {link.name}
+                                        {mounted ? link.name : ""}
                                     </span>
                                 </Link>
                             ))}
+                            <LanguageSwitcher />
                         </div>
                     </div>
 
                     {/* Кнопка мобильного меню */}
-                    <div className="md:hidden" data-aos="fade-left">
+                    <div className="md:hidden flex items-center gap-4" data-aos="fade-left">
+                        <LanguageSwitcher />
                         <button
                             onClick={() => setIsOpen(!isOpen)}
                             className="inline-flex items-center justify-center p-2 rounded-md text-slate-400 hover:text-white focus:outline-none"
@@ -100,7 +159,7 @@ export default function Header() {
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
-                                        {link.name}
+                                        {mounted ? link.name : ""}
                                         <ChevronRight size={16} />
                                     </div>
                                 </span>

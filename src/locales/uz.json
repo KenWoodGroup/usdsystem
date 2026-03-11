@@ -1,0 +1,369 @@
+{
+  "header": {
+    "home": "Bosh sahifa",
+    "about": "Biz haqimizda",
+    "blog": "Blog",
+    "usderp": "USD ERP",
+    "usdkonsult": "USD konsalting",
+    "usdmarket": "USD Market",
+    "contact": "Kontaktlar"
+  },
+  "footer": {
+    "description": "Biznesingizni yangi bosqichga ko'taradigan innovatsion texnologiyalar va raqamli yechimlar.",
+    "services": "Xizmatlar",
+    "company": "Kompaniya",
+    "contacts": "Kontaktlar",
+    "vacancies": "Vakansiyalar",
+    "blog": "Blog",
+    "all_rights_reserved": "© 2024 USD Group. Barcha huquqlar himoyalangan.",
+    "privacy_policy": "Maxfiylik siyosati",
+    "terms_of_use": "Foydalanish shartlari"
+  },
+  "home": {
+    "hero": {
+      "all_on_platform": "Hammasi bir platformada",
+      "production": "Ishlab chiqarish",
+      "sale": "Sotuv",
+      "construction": "Qurilish",
+      "description": "USD System - barcha mahsulotlarni hamyonbop narxlarda topish uchun yagona B2B platforma. Qurilish materiallari (qurilish mollari), ishlab chiqarish uchun ERP tizimi, qurilish kompaniyalari uchun CRM va O'zbekistondagi onlayn-marketpleys.",
+      "start_project": "Loyihani boshlash",
+      "about_us": "Biz haqimizda"
+    },
+    "stats": {
+      "orders": "Muvaffaqiyatli buyurtmalar",
+      "materials": "Materiallar",
+      "sellers": "Sotuvchilar",
+      "companies": "Kompaniyalar"
+    },
+    "services": {
+      "title": "O'zbekistondagi xizmatlarimiz",
+      "description": "Qurilish biznesi va materiallar ishlab chiqarishning barcha bosqichlari uchun kompleks yechimlar",
+      "usderp_desc": "O'zbekistonda qurilish materiallari ishlab chiqarishni aqlli boshqarish",
+      "usdsoft_desc": "Qurilish kompaniyalari va korxonalari uchun CRM",
+      "marketplace_desc": "O'zbekistonda qurilish materiallarini sotish uchun onlayn platforma",
+      "logistics_desc": "O'zbekiston bo'ylab qurilish materiallarini yetkazib berishni boshqarish",
+      "more": "Batafsil"
+    },
+    "integration": {
+      "title": "Qurilish biznesi uchun Marketplace va CRM integratsiyasi",
+      "description": "Barcha qurilish va sotish jarayonlari yagona USD System ekotizimiga birlashtirilgan",
+      "items": [
+        "Qurilish materiallari ombori nazorati",
+        "Qurilish kompaniyalari uchun HR tizimi",
+        "Qurilish loyihalari moliyasi",
+        "O'zbekiston bo'ylab logistika"
+      ]
+    }
+  },
+  "about": {
+    "title": "Kompaniya haqida",
+    "hero": {
+      "subtitle": "Kompaniya haqida",
+      "title": "Qurilish sanoati uchun\nraqamli ekotizim",
+      "desc1": "USD SYSTEM — bu qurilish materiallari bozorini soddalashtirish va raqamlashtirish uchun yaratilgan zamonaviy platforma.",
+      "desc2": "Tizim ishlab chiqaruvchilar, ta’minotchilar va qurilish kompaniyalarini yagona raqamli muhitda birlashtiradi. USD Market, USD CRM, USD ERP va USD HR yechimlari orqali kompaniyalar materiallarni tez topish, ta’minotchilarni solishtirish, buyurtmalarni boshqarish va ichki biznes jarayonlarini samarali nazorat qilish imkoniyatiga ega bo‘ladi."
+    },
+    "cards": {
+      "mission": {
+        "title": "Missiya",
+        "desc": "Raqamlashtirish orqali qurilish materiallari yetkazib berishni tezlashtirish va arzonlashtirish."
+      },
+      "vision": {
+        "title": "Strategik maqsad",
+        "desc": "Qurilish ta'minotining raqamli ekotizimi: shaffoflik, samaradorlik va ta'minot zanjiri boshqaruvida yetakchilik."
+      },
+      "team": {
+        "title": "Platforma",
+        "desc": "USD Market, CRM, ERP va HR kabi zamonaviy raqamli yechimlar orqali biznes jarayonlarini boshqarish."
+      },
+      "result": {
+        "title": "Natija",
+        "desc": "Qurilish kompaniyalari uchun tezkor, shaffof va samarali ishlaydigan yagona raqamli ekotizim."
+      }
+    }
+  },
+  "blog": {
+    "hero": {
+      "title": "Ishlab chiqarishni tizimli boshqarish — davr talabi",
+      "desc1": "Zamonaviy ishlab chiqarishda muvaffaqiyat kaliti — bu aniqlik va tezlikdir. Eskirgan sxemalar, Excel yoki qog'ozda ishlash resurslarning yo'qolishiga va xatolarga olib keladi. ERP tizimi kompaniyaning barcha jarayonlarini yagona raqamli makonda birlashtiradi."
+    },
+    "list": {
+      "item1": {
+        "title": "Xomashyo nazorati:",
+        "desc": "ombordagi joriy qoldiqlar real vaqt rejimida."
+      },
+      "item2": {
+        "title": "Vaqtni tejash:",
+        "desc": "ishlab chiqarish bosqichlarini avtomatlashtirish."
+      },
+      "item3": {
+        "title": "Xarajatlarni kamaytirish:",
+        "desc": "ortiqcha xarajatlar va yashirin yo'qotishlarni bartaraf etish."
+      },
+      "item4": {
+        "title": "Tahlil:",
+        "desc": "boshqaruv qarorlari uchun tayyor hisobotlar."
+      }
+    },
+    "footer": {
+      "text": "Bugungi kunda ishlab chiqarishni tizimlashtirish shunchaki afzallik emas, balki o'sish va raqobatbardoshlikning majburiy shartidir."
+    },
+    "buttons": {
+      "erp": "ERPni joriy etish",
+      "more": "Batafsil"
+    }
+  },
+  "contact": {
+    "title": "Biz bilan bog'laning",
+    "description": "Loyiha bo'yicha savollaringiz bormi yoki hamkorlik qilmoqchimisiz? Bizga yozing yoki qo'ng'iroq qiling.",
+    "info": {
+      "phone": "Telefon",
+      "email": "Email",
+      "address": "Manzil",
+      "address_value": "700002, Toshkent, Toshkent viloyati, O'zbekiston"
+    },
+    "form": {
+      "title": "Xabar yuborish",
+      "name": "Ismingiz",
+      "phone": "Telefon",
+      "subject": "Mavzu",
+      "message": "Xabar",
+      "send": "Yuborish",
+      "placeholder_name": "John Doe",
+      "placeholder_phone": "+998 90 ...",
+      "placeholder_message": "Loyihangiz haqida batafsilroq gapirib bering...",
+      "subjects": {
+        "erp": "ERP",
+        "market": "Bozor",
+        "consulting": "Konsalting",
+        "other": "Boshqa"
+      }
+    }
+  },
+  "usderp": {
+    "meta": {
+      "title": "USD ERP — Biznes jarayonlarini yagona tizimda boshqaring",
+      "description": "USD ERP — bu kompaniyaning moliya, ta’minot, ombor, buyurtmalar va ichki operatsiyalarini yagona platformada boshqarish imkonini beruvchi zamonaviy boshqaruv tizimi."
+    },
+    "hero": {
+      "subtitle": "ERP tizimi",
+      "title": "Biznesingizni to‘liq nazorat qiling",
+      "desc": "USD ERP yordamida moliya, buyurtmalar, ta’minot va ombor jarayonlarini bitta tizim orqali boshqaring. Barcha operatsiyalar real vaqt rejimida nazorat qilinadi."
+    },
+    "features": {
+      "finance": {
+        "title": "Moliya boshqaruvi",
+        "desc": "Daromad va xarajatlar nazorati, moliyaviy hisobotlar, to‘lovlar monitoringi va qarzdorlik nazorati."
+      },
+      "orders": {
+        "title": "Buyurtmalar boshqaruvi",
+        "desc": "Buyurtmalarni yaratish va kuzatish, buyurtma statuslari va yetkazib berish jarayoni nazorati."
+      },
+      "warehouse": {
+        "title": "Ombor boshqaruvi",
+        "desc": "Mahsulot kirim-chiqimi, ombor qoldiqlari va inventar nazorati."
+      },
+      "suppliers": {
+        "title": "Ta’minotchilar bilan ishlash",
+        "desc": "Ta’minotchilar bazasi, narxlar va shartnomalar hamda yetkazib berish nazorati."
+      },
+      "analytics": {
+        "title": "Analitika va hisobotlar",
+        "desc": "Real vaqt statistikasi, biznes ko‘rsatkichlari va qaror qabul qilish uchun ma’lumotlar."
+      },
+      "integration": {
+        "title": "Integratsiya",
+        "desc": "ERP tizimini boshqa biznes tizimlari bilan tez integratsiya qilish."
+      }
+    },
+    "cta": {
+      "title": "Biznes jarayonlarini raqamlashtiring",
+      "desc": "USD ERP yordamida barcha operatsiyalarni yagona tizimda boshqaring va samaradorlikni oshiring.",
+      "button": "Demo ko‘rish"
+    }
+  },
+  "usdsoft": {
+    "hero": {
+      "title": "Biznesingizni",
+      "decoration": "avtomatlashtiring",
+      "desc": "Biz shunchaki kod yozmaymiz, biz muammolarni hal qilamiz. Biznes-jarayonlaringizni tahlil qilamiz va eng samarali raqamli yechimlarni yaratamiz."
+    },
+    "tags": {
+      "production": "Ishlab chiqarishni tizimlashtirish",
+      "cloud": "Bulutli yechimlar"
+    },
+    "tech": {
+      "title": "Texnologik stek"
+    }
+  },
+  "usdmarket": {
+    "meta": {
+      "title": "USD Market — Qurilish materiallari uchun raqamli marketplace",
+      "description": "USD Market — qurilish materiallari ishlab chiqaruvchilari, ta’minotchilar va qurilish kompaniyalarini yagona platformada birlashtiruvchi raqamli marketplace."
+    },
+    "hero": {
+      "title": "Qurilish materiallarini tez va oson toping",
+      "desc": "USD Market orqali yuzlab ishlab chiqaruvchilar va ta’minotchilardan qurilish materiallarini toping, narxlarni solishtiring va buyurtmalarni bir necha daqiqada amalga oshiring.",
+      "cta1": "Kirish",
+      "cta2": "Ro'yxatdan o'tish"
+    },
+    "problem": {
+      "title": "Qurilish bozoridagi muammolar",
+      "p1": "Materiallarni topish uchun ko‘p vaqt ketadi",
+      "p2": "Narxlarni solishtirish qiyin",
+      "p3": "Mahsulot mavjudligi haqida aniq ma’lumot yo‘q",
+      "p4": "Yetkazib berish jarayoni noaniq",
+      "p5": "Ta’minotchilar yagona platformada mavjud emas"
+    },
+    "solution": {
+      "title": "USD Market qanday yordam beradi",
+      "desc": "USD Market qurilish materiallari savdosini raqamlashtiradi va barcha ishtirokchilarni bitta platformada birlashtiradi.",
+      "s1": "Materiallarni tez topish",
+      "s2": "Narxlarni bir joyda solishtirish",
+      "s3": "Ishonchli ta’minotchilar bilan ishlash",
+      "s4": "Buyurtmalarni tez amalga oshirish"
+    },
+    "features": {
+      "title": "Platforma imkoniyatlari",
+      "catalog": {
+        "title": "Mahsulot katalogi",
+        "desc": "Minglab qurilish materiallari, kategoriya bo‘yicha qidiruv va batafsil mahsulot ma’lumotlari."
+      },
+      "prices": {
+        "title": "Narxlarni solishtirish",
+        "desc": "Bir nechta ta’minotchilardan narxlar va eng yaxshi takliflarni tanlash."
+      },
+      "orders": {
+        "title": "Buyurtma tizimi",
+        "desc": "Tez buyurtma yaratish, buyurtma statuslarini kuzatish va yetkazib berishni nazorat qilish."
+      },
+      "suppliers": {
+        "title": "Ta’minotchilar bazasi",
+        "desc": "Tekshirilgan ishlab chiqaruvchilar, ta’minotchilar profillari va to‘g‘ridan-to‘g‘ri aloqa."
+      },
+      "delivery": {
+        "title": "Yetkazib berish nazorati",
+        "desc": "Buyurtmalarni yetkazib berish jarayonini to‘liq kuzatish."
+      },
+      "analytics": {
+        "title": "Analitika va statistika",
+        "desc": "Talab yuqori bo‘lgan mahsulotlar, narxlar statistikasi va savdo analitikasi."
+      }
+    }
+  },
+  "usdconsulting": {
+    "meta": {
+      "title": "USD Consulting – Qurilish Hujjatlarini Tayyorlash va Sertifikatlash",
+      "description": "USD Consulting quruvchi kompaniyalarga qonuniy qurilish boshlash uchun barcha zarur hujjatlarni tayyorlash va rasmiy tasdiqlar olishda amaliy yordam beradi."
+    },
+    "hero": {
+      "h1": "Qurilish Hujjatlarini Tez va Qonuniy Tayyorlash",
+      "desc": "USD Consulting quruvchi kompaniyalarga qurilish obyektlarini qonuniy ravishda boshlash uchun zarur bo‘lgan barcha hujjatlarni tayyorlashda amaliy yordam ko‘rsatadi. Platforma orqali kompaniyalar hujjatlarni to‘g‘ri va tez tayyorlab, rasmiy tasdiqlar va sertifikatlarni olishlari mumkin, shuningdek, noqonuniy qurilishlarning oldini olishga yordam beradi."
+    },
+    "features": {
+      "documentation": {
+        "title": "Hujjat tayyorlash",
+        "desc": "Barcha zarur qurilish hujjatlarini tayyorlash."
+      },
+      "certification": {
+        "title": "Sertifikatlash",
+        "desc": "Rasmiy tasdiqlar va sertifikatlar olish."
+      },
+      "legal": {
+        "title": "Qonuniy yordam",
+        "desc": "Noqonuniy qurilishlarni oldini olish."
+      },
+      "efficiency": {
+        "title": "Tez va samarali",
+        "desc": "Hujjatlarni tez va to‘g‘ri tayyorlash."
+      }
+    },
+    "cta": {
+      "login": "Kirish",
+      "register": "Ro‘yxatdan o‘tish"
+    }
+  },
+  "offers": {
+    "title": "Mahsulotlarga ariza topshirish",
+    "subtitle": "Ariza topshirish uchun tizimda hisobingiz bo'lishi kerak",
+    "steps": {
+      "account": "Hisob",
+      "registration": "Ro'yxatdan o'tish"
+    },
+    "step1": {
+      "title": "Hisobingiz bormi?",
+      "desc": "Ariza topshirish uchun tizimda hisobingiz bo'lishi kerak",
+      "has_account": "Hisobim bor",
+      "has_account_desc": "Ariza topshirish uchun mavjud hisobingizga kiring",
+      "no_account": "Hisob yaratish",
+      "no_account_desc": "Biz bilan ishlash uchun yangi mijoz sifatida ro'yxatdan o'ting"
+    },
+    "step2": {
+      "title": "Hisobni ro'yxatdan o'tkazish",
+      "desc": "Yangi hisob yaratish uchun ma'lumotlarni to'ldiring",
+      "type": "Hisob turi",
+      "types": {
+        "company": {
+          "title": "Kompaniya",
+          "desc": "Qurilish kompaniyasi"
+        },
+        "shop": {
+          "title": "Do'kon",
+          "desc": "Savdo nuqtasi"
+        },
+        "builder": {
+          "title": "Quruvchi",
+          "desc": "Xususiy mutaxassis"
+        }
+      }
+    },
+    "form": {
+      "company_name": "Kompaniya nomi *",
+      "shop_name": "Do'kon nomi *",
+      "builder_name": "Mutaxassis F.I.SH. *",
+      "placeholder_company": "Masalan: QurilishTech",
+      "placeholder_shop": "Masalan: QurilishMarket",
+      "placeholder_builder": "Masalan: Ivanov Ivan Ivanovich",
+      "contact_person": "Mas'ul shaxs F.I.SH. *",
+      "phone": "Telefon raqami *",
+      "region": "Viloyat *",
+      "district": "Tuman *",
+      "address": "Manzil (ko'cha, uy)",
+      "address_placeholder": "Viloyat va tuman avtomatik ravishda qo'shiladi",
+      "username": "Foydalanuvchi nomi *",
+      "password": "Parol *",
+      "back": "Orqaga",
+      "submit": "Ro'yxatdan o'tish"
+    },
+    "step3": {
+      "title": "Ro'yxatdan o'tish muvaffaqiyatli!",
+      "desc": "Hisobingiz muvaffaqiyatli yaratildi",
+      "username": "Foydalanuvchi nomi",
+      "password": "Parol",
+      "login_button": "Tizimga kirish",
+      "edit_data": "Ma'lumotlarni tahrirlashga qaytish"
+    },
+    "swal": {
+      "warning": "Diqqat",
+      "ok": "OK",
+      "loading": "Ro'yxatdan o'tmoqda...",
+      "wait": "Iltimos, kuting",
+      "error_title": "Ro'yxatdan o'tishda xatolik",
+      "error_desc": "Ro'yxatdan o'tish paytida xatolik yuz berdi. Iltimos, qaytadan urinib ko'ring.",
+      "error_details": "Xatolik tafsilotlari:",
+      "understand": "Tushunarli",
+      "validate_name": "Iltimos, kompaniya/do'kon nomini kiriting",
+      "validate_full_name": "Iltimos, mas'ul shaxsning F.I.SH.ni kiriting",
+      "validate_phone": "Iltimos, telefon raqamini kiriting",
+      "validate_username": "Iltimos, foydalanuvchi nomini kiriting",
+      "validate_password": "Parol kamida 6 ta belgidan iborat bo'lishi kerak",
+      "validate_region": "Iltimos, viloyat va tumanni tanlang"
+    }
+  },
+  "not_found": {
+    "title": "404",
+    "subtitle": "Sahifa topilmadi",
+    "description": "Ups! Ko'rinishidan bunday sahifa mavjud emas. Ehtimol, u o'chirilgan yoki havola noto'g'ri.",
+    "back_home": "Bosh sahifaga qaytish"
+  }
+}

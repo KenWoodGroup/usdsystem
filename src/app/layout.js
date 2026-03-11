@@ -4,6 +4,7 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import AOSProvider from "@/components/AOSProvider";
+import I18nInitializer from "@/components/I18nInitializer";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -20,11 +21,30 @@ const geistMono = Geist_Mono({
 ========================= */
 export const metadata = {
   title: {
-    default: "USD System",
+    default: "USD System | Поиск строительных материалов в Узбекистане",
     template: "%s | USD System",
   },
-  description: "USD System — цифровая трансформация бизнеса.",
+  description: "USD System - единая B2B платформа для поиска всех продуктов по выгодным ценам в Узбекистане. ERP для производства и CRM для строительных компаний.",
   metadataBase: new URL("https://usd-system.uz"),
+  alternates: {
+    canonical: "https://usd-system.uz",
+  },
+  openGraph: {
+    title: "USD System | Поиск строительных материалов в Узбекистане",
+    description: "USD System - единая B2B платформа для поиска всех продуктов по выгодным ценам в Узбекистане.",
+    url: "https://usd-system.uz",
+    siteName: "USD System",
+    images: [
+      {
+        url: "https://usd-system.uz/og-image.jpg",
+        width: 1200,
+        height: 630,
+        alt: "USD System",
+      },
+    ],
+    locale: "ru_UZ",
+    type: "website",
+  },
 };
 
 export default function RootLayout({ children }) {
@@ -33,6 +53,7 @@ export default function RootLayout({ children }) {
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <I18nInitializer />
         {/* Google Analytics */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-XL4ZTTLHY5"
