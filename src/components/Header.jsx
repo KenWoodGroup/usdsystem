@@ -143,7 +143,8 @@ export default function Header() {
             {/* Мобильное меню */}
             {isOpen && (
                 <div
-                    className="md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-800"
+                    className={`md:hidden bg-slate-900/95 backdrop-blur-xl border-b border-slate-800 transition-all duration-300 ease-out ${isOpen ? "max-h-screen opacity-100" : "max-h-0 opacity-0 overflow-hidden"
+                        }`}
                     data-aos="fade-down"
                 >
                     <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
@@ -153,9 +154,7 @@ export default function Header() {
                                     onClick={() => setIsOpen(false)}
                                     data-aos="fade-right"
                                     data-aos-delay={i * 100}
-                                    className={`block px-3 py-4 text-base font-medium border-b border-slate-800 last:border-0 ${isActive(link.path)
-                                        ? "text-blue-400"
-                                        : "text-slate-300"
+                                    className={`block px-3 py-4 text-base font-medium border-b border-slate-800 last:border-0 transition-colors duration-200 ${isActive(link.path) ? "text-blue-400" : "text-slate-300"
                                         }`}
                                 >
                                     <div className="flex items-center justify-between">
