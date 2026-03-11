@@ -170,7 +170,7 @@ const Home = () => {
               <img
                 src={Foto?.src || Foto}
                 alt="USD System Dashboard"
-                className="rounded-2xl shadow-2xl border border-slate-700 grayscale hover:grayscale-0 transition-all duration-700 transform hover:scale-[1.02]"
+                className="rounded-2xl shadow-2xl border border-slate-700  hover:grayscale-0 transition-all duration-700 transform hover:scale-[1.02]"
                 loading="lazy"
                 width="1200"
                 height="800"

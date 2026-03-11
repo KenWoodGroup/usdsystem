@@ -4,6 +4,7 @@ import React, { useEffect } from 'react';
 import { Package, Users, BarChart3, ShieldCheck, Zap, Database } from "lucide-react";
 import { useTranslation } from 'react-i18next';
 import Foto from "../../../public/image_2026-03-11_13-34-52.png"
+import Link from 'next/link';
 
 export default function UsdErp() {
     const { t } = useTranslation();
@@ -100,9 +101,7 @@ export default function UsdErp() {
                 <div className="mt-32 p-12 bg-blue-600/10 rounded-3xl border border-blue-500/20" data-aos="zoom-in">
 
                     <div className="grid lg:grid-cols-2 gap-12 items-center">
-
                         <div>
-
                             <h2 className="text-3xl font-bold mb-6 text-white">
                                 {t("usderp.cta.title")}
                             </h2>
@@ -110,11 +109,11 @@ export default function UsdErp() {
                             <p className="text-slate-400 text-lg mb-8 leading-relaxed">
                                 {t("usderp.cta.desc")}
                             </p>
-                            <a href="https://usderp.uz/" target="_blank" rel="noopener noreferrer">
+                            <Link href="/contact">
                                 <button className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-full font-bold transition">
                                     {t("usderp.cta.button")}
                                 </button>
-                            </a>
+                            </Link>
 
                         </div>
 
