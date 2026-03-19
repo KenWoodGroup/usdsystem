@@ -25,18 +25,18 @@ export const metadata = {
     template: "%s | USD System",
   },
   description: "USD System - единая B2B платформа для поиска всех продуктов по выгодным ценам в Узбекистане. ERP для производства и CRM для строительных компаний.",
-  metadataBase: new URL("https://usd-system.uz"),
+  metadataBase: new URL("https://usdsystem.uz"),
   alternates: {
-    canonical: "https://usd-system.uz",
+    canonical: "https://usdsystem.uz",
   },
   openGraph: {
     title: "USD System | Поиск строительных материалов в Узбекистане",
     description: "USD System - единая B2B платформа для поиска всех продуктов по выгодным ценам в Узбекистане.",
-    url: "https://usd-system.uz",
+    url: "https://usdsystem.uz",
     siteName: "USD System",
     images: [
       {
-        url: "https://usd-system.uz/og-image.jpg",
+        url: "https://usdsystem.uz/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "USD System",
@@ -46,7 +46,7 @@ export const metadata = {
     type: "website",
   },
   icons: {
-    icon: "/favicon.ico",
+    icon: "/favicon.ico?v=2",
   },
 };
 
