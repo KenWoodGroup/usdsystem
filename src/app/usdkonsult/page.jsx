@@ -65,7 +65,7 @@ const USDKonsulting = () => {
                         {t("usdconsulting.cta.login")}
                     </a>
                     <a
-                        href="https://consult.usdsoft.uz/register"
+                        href="/consultregister"
                         className="px-8 py-4 border border-slate-700 hover:border-blue-500 rounded-full font-bold text-white transition"
                     >
                         {t("usdconsulting.cta.register")}

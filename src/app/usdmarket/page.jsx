@@ -50,12 +50,7 @@ const USDMarket = () => {
                             {t("usdmarket.hero.cta1")}
                         </a>
 
-                        <a
-                            href="https://usdsoft.uz/register"
-                            className="px-8 py-4 border border-slate-700 hover:border-blue-500 text-white rounded-full font-bold transition"
-                        >
-                            {t("usdmarket.hero.cta2")}
-                        </a>
+                       
 
                     </div>
 
