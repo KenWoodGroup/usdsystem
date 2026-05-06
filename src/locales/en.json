@@ -21,37 +21,94 @@
     "terms_of_use": "Terms of Use"
   },
   "home": {
+    "directions": {
+      "title": "Our building materials directions",
+      "subtitle": "We supply high-quality construction materials and offer the best prices.",
+      "button": "All directions",
+      "fancoil": {
+        "title": "Heating and cooling system",
+        "desc": "Modern fan coil systems for distributing heat and cold."
+      },
+      "concrete": {
+        "title": "Concrete",
+        "desc": "High-quality concrete mixtures and dry mixes."
+      },
+      "rebar": {
+        "title": "Metal",
+        "desc": "Rebar of various diameters, mesh, and metal products."
+      },
+      "brick": {
+        "title": "Blocks",
+        "desc": "Ceramic, silicate bricks, aerated concrete, and foam blocks."
+      },
+      "furniture": {
+        "title": "Furniture",
+        "desc": "Manufacturing and supply of office, home, and specialized furniture."
+      },
+      "electro": {
+        "title": "Electrical engineering",
+        "desc": "Cables, sockets, circuit breakers, and lighting fixtures."
+      },
+      "precast": {
+        "title": "Reinforced concrete",
+        "desc": "Slabs, columns, foundation blocks, and other reinforced concrete structures."
+      },
+      "cable": {
+        "title": "Cables and wires",
+        "desc": "Electric cables, wires, sockets, and circuit breakers."
+      },
+      "gypsum": {
+        "title": "Drywall",
+        "desc": "Drywall sheets, profiles, and accessories."
+      },
+      "Kafel": {
+        "title": "Ceramic tiles",
+        "desc": "Ceramic tiles for walls and floors, tile, porcelain stoneware."
+      },
+      "sandwich": {
+        "title": "Sandwich panels",
+        "desc": "Sandwich panels for walls and roofs with insulation."
+      },
+      "Shpaklefka": {
+        "title": "Putty and mixtures",
+        "desc": "Dry mixes, putty, primer, and gypsum compounds."
+      },
+      "EshikVaRom": {
+        "title": "Windows and frames",
+        "desc": "Interior and entrance doors, window frames, and accessories."
+      }
+    },
     "hero": {
-      "all_on_platform": "All on a single platform",
+      "all_on_platform": "All in one platform",
       "production": "Production",
       "sale": "Sale",
       "construction": "Construction",
-      "description": "USD System - a unified B2B platform for finding all products at competitive prices. Construction materials, ERP system for production, CRM for construction companies, and an online marketplace in Uzbekistan.",
-      "start_project": "Contact Us",
-      "about_us": "About Us"
+      "description": "USD System is a single B2B platform to find all products at affordable prices. Building materials, ERP for manufacturing, CRM for construction companies, and an online marketplace in Uzbekistan.",
+      "start_project": "Contact us",
+      "about_us": "About us"
     },
     "stats": {
-      "orders": "Successful Orders",
+      "orders": "Successful orders",
       "materials": "Materials",
       "sellers": "Sellers",
       "companies": "Companies"
     },
     "services": {
-      "title": "Our Services in Uzbekistan",
-      "description": "Integrated solutions for all stages of construction business and material production",
-      "usderp_desc": "Smart management of construction materials production in Uzbekistan",
-      "usdsoft_desc": "Document preparation for legal construction starts.",
-      "marketplace_desc": "Online platform for selling construction materials in Uzbekistan",
-      "logistics_desc": "Management of construction materials delivery across Uzbekistan",
-      "more": "More Details"
+      "title": "Our services in Uzbekistan",
+      "description": "Comprehensive solutions for all stages of construction business and material production",
+      "usderp_desc": "Smart management of building materials production in Uzbekistan",
+      "usdsoft_desc": "Document preparation for legal start of construction projects.",
+      "marketplace_desc": "Online platform for selling building materials in Uzbekistan",
+      "logistics_desc": "Managing delivery of construction materials across Uzbekistan",
+      "more": "Learn more"
     },
     "integration": {
-      "title": "Marketplace & CRM Integration for Construction Business",
-      "description": "All construction and sales processes are combined into a single USD System ecosystem",
+      "title": "Marketplace and CRM integration for construction business",
+      "description": "All construction and sales processes are united into a single USD System ecosystem",
       "items": [
-        "Inventory control of construction materials",
+        "Construction materials warehouse control",
         "HR system for construction companies",
-        "Construction project finances",
+        "Construction project finance",
         "Logistics across Uzbekistan"
       ]
     }

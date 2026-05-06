@@ -21,6 +21,63 @@
     "terms_of_use": "Foydalanish shartlari"
   },
   "home": {
+    "directions": {
+      "title": "Qurilish materiallari bo‘yicha yo‘nalishlarimiz",
+      "subtitle": "Biz yuqori sifatli qurilish materiallarini yetkazib beramiz va eng yaxshi narxlarni taklif etamiz.",
+      "button": "Barcha yo‘nalishlar",
+      "fancoil": {
+        "title": "Isitish va sovutish tizimi",
+        "desc": "Issiqlik va sovuqни tarqatish uchun zamonaviy fancoil tizimlari."
+      },
+      "concrete": {
+        "title": "Beton",
+        "desc": "Yuqori sifatli beton aralashmalari va quruq qorishmalar."
+      },
+      "rebar": {
+        "title": "Metall",
+        "desc": "Har xil diametrdagi armatura, to'rva va metall buyumlar."
+      },
+      "brick": {
+        "title": "Bloklar",
+        "desc": "Keramik, silikat g'isht, gazbeton va ko'pikli bloklar."
+      },
+      "furniture": {
+        "title": "Mebel",
+        "desc": "Ofis, uy va maxsus mebel ishlab chiqarish va yetkazib berish."
+      },
+      "electro": {
+        "title": "Elektrotexnika",
+        "desc": "Kabel, rozetkalar, avtomatik o‘chirgichlar va yoritish moslamalari."
+      },
+      "precast": {
+        "title": "Temir-beton",
+        "desc": "Plitalar, ustunlar, poydevor bloklari va boshqa temir-beton konstruksiyalar."
+      },
+      "cable": {
+        "title": "Kabel va simlar",
+        "desc": "Elektr kabellari, simlar, rozetkalar va avtomatik o‘chirgichlar."
+      },
+      "gypsum": {
+        "title": "Gipsokarton",
+        "desc": "Gipsokarton plitalari, profillar, va ular uchun aksessuarlar."
+      },
+      "Kafel": {
+        "title": "Keramik plitka",
+        "desc": "Devor va pol uchun keramik plitkalar, kafel va keramogranit."
+      },
+      "sandwich": {
+        "title": "Sendvich panel",
+        "desc": "Devor va tom uchun sendvich panellar, isitgich bilan qoplangan."
+      },
+      "Shpaklefka": {
+        "title": "Shpaklyovka va qorishmalar",
+        "desc": "Quruq qorishmalar, shpaklyovka, astar va gips aralashmalari."
+      },
+      "EshikVaRom": {
+        "title": "Oyna va romlar",
+        "desc": "Ichki va kirish eshiklari, deraza romlari va aksessuarlar."
+      }
+    },
     "hero": {
       "all_on_platform": "Hammasi bir platformada",
       "production": "Ishlab chiqarish",
